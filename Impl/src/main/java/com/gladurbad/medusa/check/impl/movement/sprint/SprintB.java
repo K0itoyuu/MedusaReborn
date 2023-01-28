@@ -5,6 +5,7 @@ import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffectType;
 
 @CheckInfo(name = "Sprint (B)",description = "Client Ignored Blindness")
 public class SprintB extends Check {
@@ -16,7 +17,7 @@ public class SprintB extends Check {
     @Override
     public void handle(Packet packet) {
         if (data.getActionProcessor().isSprinting()) {
-            if (player.hasPotionEffect(darkness)) {
+            if (player.hasPotionEffect(PotionEffectType.DARKNESS)) {
                 fail();
                 data.getPlayer().setSprinting(false);
             }
