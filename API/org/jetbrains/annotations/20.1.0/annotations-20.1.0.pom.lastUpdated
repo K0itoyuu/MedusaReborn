@@ -1,0 +1,9 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Jan 27 16:24:56 CST 2023
+https\://jitpack.io/.lastUpdated=1674807853899
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.error=
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.lastUpdated=1674807853637
+https\://repo.maven.apache.org/maven2/.lastUpdated=1674807896642
+@default-funkemunky-releases-https\://nexus.funkemunky.cc/content/repositories/releases/.lastUpdated=1674807895983
+https\://nexus.funkemunky.cc/content/repositories/releases/.error=Could not transfer artifact org.jetbrains\:annotations\:pom\:20.1.0 from/to funkemunky-releases (https\://nexus.funkemunky.cc/content/repositories/releases/)\: transfer failed for https\://nexus.funkemunky.cc/content/repositories/releases/org/jetbrains/annotations/20.1.0/annotations-20.1.0.pom
+https\://jitpack.io/.error=

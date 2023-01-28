@@ -1,0 +1,14 @@
+name: Medusa
+version: 1.6.0
+main: com.gladurbad.medusa.MedusaPlugin
+authors: [GladUrBad]
+description: Medusa Anticheat
+
+commands:
+  medusa:
+    description: Commands for Medusa Anticheat.
+    usage: /medusa
+    aliases: [anticheat, ac]
+    permission: medusa.commands
+
+

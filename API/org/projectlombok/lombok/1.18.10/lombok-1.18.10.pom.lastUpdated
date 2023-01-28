@@ -1,0 +1,9 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Jan 27 16:25:40 CST 2023
+https\://jitpack.io/.lastUpdated=1674807897813
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.error=
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.lastUpdated=1674807897531
+https\://repo.maven.apache.org/maven2/.lastUpdated=1674807940402
+@default-funkemunky-releases-https\://nexus.funkemunky.cc/content/repositories/releases/.lastUpdated=1674807939881
+https\://nexus.funkemunky.cc/content/repositories/releases/.error=Could not transfer artifact org.projectlombok\:lombok\:pom\:1.18.10 from/to funkemunky-releases (https\://nexus.funkemunky.cc/content/repositories/releases/)\: transfer failed for https\://nexus.funkemunky.cc/content/repositories/releases/org/projectlombok/lombok/1.18.10/lombok-1.18.10.pom
+https\://jitpack.io/.error=

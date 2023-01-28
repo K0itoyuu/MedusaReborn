@@ -1,0 +1,12 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Jan 27 16:35:40 CST 2023
+https\://jitpack.io/.error=
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.error=
+@default-funkemunky-releases-https\://nexus.funkemunky.cc/content/repositories/releases/.lastUpdated=1674808540181
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.lastUpdated=1674807983848
+https\://jitpack.io/.lastUpdated=1674807984356
+https\://nexus.funkemunky.cc/content/repositories/releases/.error=Could not transfer artifact org.github.spigot\:1.8.3\:pom\:1.8.3 from/to funkemunky-releases (https\://nexus.funkemunky.cc/content/repositories/releases/)\: transfer failed for https\://nexus.funkemunky.cc/content/repositories/releases/org/github/spigot/1.8.3/1.8.3/1.8.3-1.8.3.pom
+https\://repo.papermc.io/repository/maven-public/.error=
+https\://repo.maven.apache.org/maven2/.lastUpdated=1674808026893
+https\://repo.maven.apache.org/maven2/.error=
+https\://repo.papermc.io/repository/maven-public/.lastUpdated=1674808468929

@@ -1,0 +1,10 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Jan 27 16:24:11 CST 2023
+https\://jitpack.io/.lastUpdated=1674807809278
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.error=
+https\://hub.spigotmc.org/nexus/content/repositories/snapshots/.lastUpdated=1674807808555
+https\://repo.maven.apache.org/maven2/.lastUpdated=1674807851594
+@default-funkemunky-releases-https\://nexus.funkemunky.cc/content/repositories/releases/.lastUpdated=1674807851388
+https\://nexus.funkemunky.cc/content/repositories/releases/.error=Could not transfer artifact com.gladurbad\:API\:pom\:1.1.6 from/to funkemunky-releases (https\://nexus.funkemunky.cc/content/repositories/releases/)\: transfer failed for https\://nexus.funkemunky.cc/content/repositories/releases/com/gladurbad/API/1.1.6/API-1.1.6.pom
+https\://jitpack.io/.error=
+https\://repo.maven.apache.org/maven2/.error=
