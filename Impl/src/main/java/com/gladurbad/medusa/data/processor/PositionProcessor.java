@@ -114,6 +114,7 @@ public final class PositionProcessor {
     }
 
     public void handleTicks() {
+        data.getVelocityProcessor().setBypassTicks(Math.max(0,data.getVelocityProcessor().getBypassTicks()-1));
         fastBlockTicks = data.getPlayer().isBlocking() ? fastBlockTicks + 1 : 0;
         blockTicks = data.getPlayer().isBlocking() ? blockTicks + 1 : Math.max((int) Math.floor((double) blockTicks / 2D), 0);
         groundTicks = onGround && mathematicallyOnGround ? groundTicks + 1 : 0;

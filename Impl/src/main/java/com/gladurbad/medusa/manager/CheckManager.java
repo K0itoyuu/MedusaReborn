@@ -5,20 +5,16 @@ import com.gladurbad.medusa.check.impl.combat.autoblock.AutoBlockA;
 import com.gladurbad.medusa.check.impl.combat.autoblock.AutoBlockB;
 import com.gladurbad.medusa.check.impl.combat.killaura.KillAuraF;
 import com.gladurbad.medusa.check.impl.combat.killaura.*;
-import com.gladurbad.medusa.check.impl.movement.fly.FlyA;
-import com.gladurbad.medusa.check.impl.movement.fly.FlyB;
-import com.gladurbad.medusa.check.impl.movement.fly.FlyC;
-import com.gladurbad.medusa.check.impl.movement.fly.FlyD;
-import com.gladurbad.medusa.check.impl.movement.noslow.NoSlowA;
-import com.gladurbad.medusa.check.impl.movement.noslow.NoSlowB;
-import com.gladurbad.medusa.check.impl.movement.speed.SpeedA;
-import com.gladurbad.medusa.check.impl.movement.sprint.SprintA;
+import com.gladurbad.medusa.check.impl.combat.reach.ReachA;
+import com.gladurbad.medusa.check.impl.movement.fly.*;
+import com.gladurbad.medusa.check.impl.movement.noslow.*;
+import com.gladurbad.medusa.check.impl.movement.sprint.*;
+import com.gladurbad.medusa.check.impl.movement.speed.*;
 import com.gladurbad.medusa.check.impl.movement.step.StepA;
 import com.gladurbad.medusa.check.impl.player.client.ClientA;
 import com.gladurbad.medusa.check.impl.player.client.ClientB;
-import com.gladurbad.medusa.check.impl.player.inventory.InventoryA;
-import com.gladurbad.medusa.check.impl.player.inventory.InventoryB;
-import com.gladurbad.medusa.check.impl.player.inventory.InventoryC;
+import com.gladurbad.medusa.check.impl.player.client.ClientC;
+import com.gladurbad.medusa.check.impl.player.inventory.*;
 import com.gladurbad.medusa.check.impl.player.protocol.*;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
@@ -36,9 +32,11 @@ public final class CheckManager {
             FlyB.class,
             FlyC.class,
             FlyD.class,
+            SpeedA.class,
             StepA.class,
             SprintA.class,
-            SpeedA.class,
+            SprintB.class,
+            ReachA.class,
             AutoBlockA.class,
             AutoBlockB.class,
             KillAuraA.class,
@@ -48,6 +46,7 @@ public final class CheckManager {
             KillAuraE.class,
             KillAuraF.class,
             KillAuraG.class,
+            KillAuraH.class,
             InventoryA.class,
             InventoryB.class,
             InventoryC.class,
@@ -61,8 +60,10 @@ public final class CheckManager {
             ProtocolH.class,
             ProtocolI.class,
             ProtocolJ.class,
+            ProtocolK.class,
             ClientA.class,
-            ClientB.class
+            ClientB.class,
+            ClientC.class,
     };
 
     private static final List<Constructor<?>> CONSTRUCTORS = new ArrayList<>();

@@ -4,6 +4,7 @@ import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
+import org.bukkit.potion.PotionEffectType;
 
 @CheckInfo(name = "NoSlow (B)",description = "Blocking & Sprinting")
 public class NoSlowB extends Check {
@@ -23,8 +24,6 @@ public class NoSlowB extends Check {
                 fail("SprintingTicks: " + data.getActionProcessor().getSprintingTicks() + ", BlockTicks: " + data.getPositionProcessor().getFastBlockTicks());
                 buffer = 0;
             }
-        } else {
-            buffer = Math.max(buffer-1,0);
         }
     }
 }

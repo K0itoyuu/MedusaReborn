@@ -1,9 +1,13 @@
 package com.gladurbad.medusa.util;
 
+import com.gladurbad.medusa.Medusa;
+import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.data.processor.PositionProcessor;
 import com.gladurbad.medusa.util.type.Pair;
 import com.google.common.collect.Lists;
 import lombok.experimental.UtilityClass;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 import java.util.*;
 
@@ -40,6 +44,13 @@ public final class MathUtil {
         return Math.sqrt(variance);
     }
 
+    public double getDistance(Player player, Entity target) {
+        PlayerData data = Medusa.INSTANCE.getPlayerDataManager().getPlayerData(player);
+        float f = (float)(data.getPositionProcessor().getX() - target.getLocation().getX());
+        float f1 = (float)(data.getPositionProcessor().getY() - target.getLocation().getY());
+        float f2 = (float)(data.getPositionProcessor().getZ() - target.getLocation().getZ());
+        return Math.sqrt(f * f + f1 * f1 + f2 * f2);
+    }
     public boolean isScientificNotation(final Number num) {
         return (num.toString().contains("E"));
     }

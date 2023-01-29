@@ -125,6 +125,13 @@ violations:
 checks:
   # Combat Detections: Offers various checks designed to detect modules used to give a significant combat advantage.
   combat:
+    # Reach Detections:
+    reach:
+      # Checks if the player using reach.
+      a:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
     # KillAura Detections: Capable of detecting some KillAura modules on various clients. Recommended to ban for these
     # checks, however use at your own risk.
     killaura:
@@ -163,6 +170,11 @@ checks:
         enabled: true
         max-violations: 50
         punish-command: ''
+      # Checks for player attacked rotation speed
+      h:
+        enabled: true
+        max-violations: 15
+        punish-command: ''
     autoblock:
       # Checks for AutoBlock (Simple)
       a:
@@ -177,14 +189,19 @@ checks:
   # Movement Detections: Offers various checks designed to detect blatant movement advantages.
   movement:
     speed:
-      # Checks player speed
+      # Checks for horizontal friction.
       a:
-        enabled: true
+        enabled: false
         max-violations: 10
         punish-command: ''
     sprint:
       # Checks player foodlevel
       a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Checks player effect buff
+      b:
         enabled: true
         max-violations: 10
         punish-command: ''
@@ -230,6 +247,13 @@ checks:
         punish-command: ''
   # Player Detections: Offers various checks to detect miscellaneous cheats not covered by the other categories.
   player:
+    # Rotation Detections: Checks for rotation cheats
+    rotation:
+      # Rotation diff
+      a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     # Client Detections: Checks for client cheats (PingSpoof)
     client:
       # Cancel Transaction
@@ -239,6 +263,11 @@ checks:
         punish-command: ''
       # Fake Transaction
       b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Timer
+      c:
         enabled: true
         max-violations: 10
         punish-command: ''
@@ -308,6 +337,11 @@ checks:
         punish-command: ''
       # Checks if the player is attacking and digging at the same time.
       j:
+        enabled: true
+        max-violations: 15
+        punish-command: ''
+      # PingSpoof
+      k:
         enabled: true
         max-violations: 15
         punish-command: ''

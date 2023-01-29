@@ -4,6 +4,7 @@ import com.gladurbad.medusa.check.Check;
 import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
+import com.gladurbad.medusa.util.PacketUtil;
 
 /**
  * Created on 11/14/2020 Package com.gladurbad.medusa.check.impl.player.Protocol by GladUrBad
@@ -21,7 +22,15 @@ public final class ProtocolA extends Check {
         if (packet.isRotation()) {
             final float pitch = data.getRotationProcessor().getPitch();
 
-            if (Math.abs(pitch) > 90) fail(String.format("pitch=%.2f", pitch));
+            if (Math.abs(pitch) > 90) {
+                fail("Pitch: " + pitch);
+                double x,y,z,yaw;
+                x = data.getPositionProcessor().getX();
+                y = data.getPositionProcessor().getY();
+                z = data.getPositionProcessor().getZ();
+                yaw = data.getRotationProcessor().getYaw();
+                PacketUtil.sendPacket(data.getPlayer(), PacketUtil.S08PacketPlayerPosLook(data.getPlayer(), x,y,z,yaw,90.0,false));
+            }
         }
     }
 }

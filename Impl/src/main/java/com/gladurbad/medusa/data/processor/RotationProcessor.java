@@ -4,6 +4,7 @@ import com.gladurbad.medusa.util.MathUtil;
 import lombok.Getter;
 import com.gladurbad.medusa.Medusa;
 import com.gladurbad.medusa.data.PlayerData;
+import lombok.Setter;
 
 import java.util.ArrayDeque;
 import java.util.Collection;

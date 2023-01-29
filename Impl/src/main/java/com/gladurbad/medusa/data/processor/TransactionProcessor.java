@@ -2,6 +2,7 @@ package com.gladurbad.medusa.data.processor;
 
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.util.PacketUtil;
+import com.gladurbad.medusa.util.PlayerUtil;
 import io.github.retrooper.packetevents.packetwrappers.play.in.transaction.WrappedPacketInTransaction;
 import io.github.retrooper.packetevents.packetwrappers.play.out.transaction.WrappedPacketOutTransaction;
 import lombok.Getter;
@@ -18,6 +19,8 @@ public class TransactionProcessor {
 
     private long transactionReplyClient,transactionReplyServer,transactionPing;
 
+    private int ping,lastPing;
+
     private boolean invalidTransaction = false;
 
     private boolean canSend = true;
@@ -33,6 +36,8 @@ public class TransactionProcessor {
             this.transactionID = transaction.getActionNumber();
             transactionReplyClient = System.currentTimeMillis();
             transactionPing = Math.abs(transactionReplyClient - transactionReplyServer);
+            lastPing = ping;
+            ping = PlayerUtil.getPing(data.getPlayer());
             canSend = true;
         } else if (!(Bukkit.getPluginManager().getPlugin("Vulcan") != null && transaction.getActionNumber() < 0) || transaction.getActionNumber() != 1) {
             invalidTransactionValue = transaction.getActionNumber();

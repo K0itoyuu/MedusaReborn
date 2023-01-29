@@ -22,7 +22,9 @@ public final class ReflectionUtil {
 
     public Field getField(Class<?> clazz, String fieldName) {
         try {
-            return clazz.getField(fieldName);
+            Field field = clazz.getField(fieldName);
+            field.setAccessible(true);
+            return field;
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
@@ -31,7 +33,9 @@ public final class ReflectionUtil {
 
     public Method getMethod(Class<?> clazz, String methodName, Class<?>... params) {
         try {
-            return clazz.getMethod(methodName, params);
+            Method method = clazz.getMethod(methodName,params);
+            method.setAccessible(true);
+            return method;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

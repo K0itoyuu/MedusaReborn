@@ -13,7 +13,7 @@ public final class CombatProcessor {
 
     private int hitTicks, swings, hits, currentTargets;
 
-    private double hitMissRatio, distance;
+    private double hitMissRatio, distance,lastDistance;
 
     private Entity target, lastTarget;
 
@@ -25,13 +25,15 @@ public final class CombatProcessor {
         if (wrapper.getAction() != WrappedPacketInUseEntity.EntityUseAction.ATTACK || wrapper.getEntity() == null) {
             return;
         }
-
         data.getRotationProcessor().setAttackPitch(data.getRotationProcessor().getPitch());
         data.getRotationProcessor().setAttackYaw(data.getRotationProcessor().getYaw());
 
         lastTarget = target == null ? wrapper.getEntity() : target;
         target = wrapper.getEntity();
 
+        if (!Double.isNaN(distance)) {
+            lastDistance = distance;
+        }
         distance = data.getPlayer().getLocation().toVector().setY(0).distance(target.getLocation().toVector().setY(0)) - .42;
 
         ++hits;
