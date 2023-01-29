@@ -19,7 +19,6 @@ public class AutoBlockA extends Check {
             else buffer = Math.max(buffer-1,0);
             if (buffer>5) {
                 fail();
-                PlayerUtil.setBackOnGround(data);
                 buffer = 0;
             }
         }

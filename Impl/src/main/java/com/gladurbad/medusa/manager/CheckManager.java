@@ -16,6 +16,7 @@ import com.gladurbad.medusa.check.impl.player.client.ClientB;
 import com.gladurbad.medusa.check.impl.player.client.ClientC;
 import com.gladurbad.medusa.check.impl.player.inventory.*;
 import com.gladurbad.medusa.check.impl.player.protocol.*;
+import com.gladurbad.medusa.check.impl.player.rotation.RotationA;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
 
@@ -61,6 +62,7 @@ public final class CheckManager {
             ProtocolI.class,
             ProtocolJ.class,
             ProtocolK.class,
+            RotationA.class,
             ClientA.class,
             ClientB.class,
             ClientC.class,

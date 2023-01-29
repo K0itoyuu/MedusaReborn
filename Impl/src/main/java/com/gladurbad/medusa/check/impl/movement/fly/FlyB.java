@@ -17,6 +17,7 @@ public class FlyB extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isPosition() || packet.isPosLook() && data.getTransactionProcessor().getServerTransactionPing() < 200 && data.getJoinTime() > 5000 && !data.getPositionProcessor().isTeleporting() && !data.getActionProcessor().isRespawning() && data.getPositionProcessor().getAirTicks() > 5) {
+            if (data.getJoinTime() < 10000) return;
             WrappedPacketInFlying wrapped = new WrappedPacketInFlying(packet.getRawPacket());
             boolean packetOnGround = wrapped.isOnGround();
             boolean positionOnGround = PlayerUtil.isOnGround(data);

@@ -191,7 +191,7 @@ checks:
     speed:
       # Checks for horizontal friction.
       a:
-        enabled: false
+        enabled: true
         max-violations: 10
         punish-command: ''
     sprint:
@@ -249,7 +249,7 @@ checks:
   player:
     # Rotation Detections: Checks for rotation cheats
     rotation:
-      # Rotation diff
+      # Rotation direction
       a:
         enabled: true
         max-violations: 10
