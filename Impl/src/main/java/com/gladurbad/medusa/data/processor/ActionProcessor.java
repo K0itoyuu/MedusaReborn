@@ -29,7 +29,7 @@ public final class ActionProcessor {
     @Setter private boolean inventory;
 
     private int heldItemSlot, lastHeldItemSlot, lastDiggingTick, lastPlaceTick, lastBreakTick,
-            sprintingTicks, sneakingTicks;
+            sprintingTicks, sneakingTicks, windowSlot;
 
     private long lastFlyingTime, ping;
 
@@ -79,6 +79,7 @@ public final class ActionProcessor {
             case PERFORM_RESPAWN:
                 respawning = true;
                 inventory = false;
+                windowSlot = -1;
                 break;
         }
     }
@@ -94,6 +95,12 @@ public final class ActionProcessor {
 
     public void handleCloseWindow() {
         inventory = false;
+        windowSlot = -1;
+    }
+
+    public void handleWindowClick(final int windowSlot) {
+        this.windowSlot = windowSlot;
+        this.inventory = true;
     }
 
     public void handleArmAnimation() {

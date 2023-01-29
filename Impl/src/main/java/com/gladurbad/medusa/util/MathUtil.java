@@ -45,11 +45,8 @@ public final class MathUtil {
     }
 
     public double getDistance(Player player, Entity target) {
-        PlayerData data = Medusa.INSTANCE.getPlayerDataManager().getPlayerData(player);
-        float f = (float)(data.getPositionProcessor().getX() - target.getLocation().getX());
-        float f1 = (float)(data.getPositionProcessor().getY() - target.getLocation().getY());
-        float f2 = (float)(data.getPositionProcessor().getZ() - target.getLocation().getZ());
-        return Math.sqrt(f * f + f1 * f1 + f2 * f2);
+        double distance = player.getLocation().distance(target.getLocation());
+        return distance - 0.3;
     }
     public boolean isScientificNotation(final Number num) {
         return (num.toString().contains("E"));

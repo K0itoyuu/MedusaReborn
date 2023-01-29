@@ -23,7 +23,8 @@ public class InventoryD extends Check {
                 }
             }
             if (packet.isPosition()) {
-                boolean invalid = data.getVelocityProcessor().getBypassTicks() == 0 && data.getPositionProcessor().getDeltaXZ() > 0.185 && !data.getPositionProcessor().isTeleporting();
+                boolean invalid = data.getVelocityProcessor().getBypassTicks() == 0 &&
+                        data.getPositionProcessor().getDeltaXZ() > 0.185 && !data.getPositionProcessor().isTeleporting();
                 if (invalid) buffer += 1.0;
                 if (buffer > 4.0) {
                     fail("dxz: " + data.getPositionProcessor().getDeltaXZ());
@@ -33,7 +34,7 @@ public class InventoryD extends Check {
                 }
             }
         } else {
-            buffer = Math.max(buffer - 1.0,0);
+            buffer = Math.max(buffer - 0.05,0);
         }
     }
 }

@@ -11,10 +11,11 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.teleportaccept.Wr
 import io.github.retrooper.packetevents.packetwrappers.play.in.transaction.WrappedPacketInTransaction;
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import com.gladurbad.medusa.packet.Packet;
+import io.github.retrooper.packetevents.packetwrappers.play.in.windowclick.WrappedPacketInWindowClick;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 
 public final class ReceivingPacketProcessor  {
-
     public void handle(final PlayerData data, final Packet packet) {
         if (packet.isEntityAction()) {
             final WrappedPacketInEntityAction wrapper = new WrappedPacketInEntityAction(packet.getRawPacket());
@@ -59,9 +60,14 @@ public final class ReceivingPacketProcessor  {
             final WrappedPacketInTransaction wrapper = new WrappedPacketInTransaction(packet.getRawPacket());
             data.getVelocityProcessor().handleTransaction(wrapper);
             data.getTransactionProcessor().handleTransactionReceiving(wrapper);
+        } else if (packet.isWindowClick()) {
+            final WrappedPacketInWindowClick wrapper = new WrappedPacketInWindowClick(packet.getRawPacket());
+            data.getActionProcessor().handleWindowClick(wrapper.getWindowSlot());
         }
         if (!data.getPlayer().hasPermission("medusa.bypass") || data.getPlayer().isOp()) {
-            data.getChecks().forEach(check -> check.handle(packet));
+            data.getChecks().forEach(check -> {
+                check.handle(packet);
+            });
         }
     }
 }

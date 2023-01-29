@@ -18,8 +18,10 @@ public final class NetworkListener extends PacketListenerDynamic {
         handle: {
             if (data == null) break handle;
 
-            Medusa.INSTANCE.getPacketExecutor().execute(() -> Medusa.INSTANCE.getReceivingPacketProcessor()
-                    .handle(data, new Packet(Packet.Direction.RECEIVE, event.getNMSPacket(), event.getPacketId())));
+            Medusa.INSTANCE.getPacketExecutor().execute(() -> {
+                Medusa.INSTANCE.getReceivingPacketProcessor()
+                        .handle(data, new Packet(Packet.Direction.RECEIVE, event.getNMSPacket(), event.getPacketId()));
+            });
         }
     }
 

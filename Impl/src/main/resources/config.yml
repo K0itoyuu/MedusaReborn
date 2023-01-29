@@ -188,6 +188,22 @@ checks:
         punish-command: ''
   # Movement Detections: Offers various checks designed to detect blatant movement advantages.
   movement:
+    jesus:
+      # Checks for walk on liquid
+      a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Checks for walk on liquid
+      b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Checks for swimming speed
+      c:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     speed:
       # Checks for horizontal friction.
       a:

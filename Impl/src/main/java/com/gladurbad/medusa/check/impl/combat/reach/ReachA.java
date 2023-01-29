@@ -7,7 +7,10 @@ import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
 import com.gladurbad.medusa.util.MathUtil;
 import com.gladurbad.medusa.util.PlayerUtil;
+import com.gladurbad.medusa.util.type.BoundingBox;
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
+import io.github.retrooper.packetevents.utils.vector.Vector3d;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
@@ -24,22 +27,27 @@ public class ReachA extends Check {
             Entity target = data.getCombatProcessor().getTarget();
             Entity lastTarget = data.getCombatProcessor().getLastTarget();
             if (target != lastTarget) return;
-            double distance = (data.getCombatProcessor().getDistance() - data.getCombatProcessor().getLastDistance()) / 2D;
-            double offset = (double) data.getTransactionProcessor().getServerTransactionPing() / 1000D;
-            offset = Math.abs(offset);
-            offset = Math.min(offset,0.4);
-            double maxReach = 3.2 + offset;
+            if (data.getCombatProcessor().getHitTicks() == 0) {
+                double distance = (data.getCombatProcessor().getDistance() + data.getCombatProcessor().getLastDistance()) / 2D;
+                double offset = (double) data.getTransactionProcessor().getServerTransactionPing() / 1000D;
+                offset = Math.abs(offset);
+                offset = Math.min(offset, 0.4);
+                double maxReach = 3.15 + offset;
+                debug("d:" + data.getCombatProcessor().getDistance() + ", ld:" + data.getCombatProcessor().getLastDistance());
 
-            //狗都觉得不可能
-            if (distance > 5.5) return;
+                //狗都觉得不可能
+                if (distance > 5.5) return;
 
-            if (distance > maxReach) {
-                buffer += 1.0;
-            }
+                if (distance > maxReach) {
+                    buffer += 1.0;
+                }
 
-            if (buffer > 2.0) {
-                fail("Distance: " + distance + ", limit: " + maxReach);
+                if (buffer > 2.0) {
+                    fail("Distance: " + distance + ", limit: " + maxReach);
+                    buffer = 0;
+                }
             }
         }
     }
+
 }

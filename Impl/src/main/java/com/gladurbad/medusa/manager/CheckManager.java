@@ -7,6 +7,9 @@ import com.gladurbad.medusa.check.impl.combat.killaura.KillAuraF;
 import com.gladurbad.medusa.check.impl.combat.killaura.*;
 import com.gladurbad.medusa.check.impl.combat.reach.ReachA;
 import com.gladurbad.medusa.check.impl.movement.fly.*;
+import com.gladurbad.medusa.check.impl.movement.jesus.JesusA;
+import com.gladurbad.medusa.check.impl.movement.jesus.JesusB;
+import com.gladurbad.medusa.check.impl.movement.jesus.JesusC;
 import com.gladurbad.medusa.check.impl.movement.noslow.*;
 import com.gladurbad.medusa.check.impl.movement.sprint.*;
 import com.gladurbad.medusa.check.impl.movement.speed.*;
@@ -38,6 +41,9 @@ public final class CheckManager {
             SprintA.class,
             SprintB.class,
             ReachA.class,
+            JesusA.class,
+            JesusB.class,
+            JesusC.class,
             AutoBlockA.class,
             AutoBlockB.class,
             KillAuraA.class,

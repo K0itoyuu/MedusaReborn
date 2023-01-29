@@ -1,8 +1,10 @@
 package com.gladurbad.medusa.data.processor;
 
+import com.gladurbad.medusa.util.MathUtil;
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import lombok.Getter;
 import com.gladurbad.medusa.data.PlayerData;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
 
@@ -31,11 +33,9 @@ public final class CombatProcessor {
         lastTarget = target == null ? wrapper.getEntity() : target;
         target = wrapper.getEntity();
 
-        if (!Double.isNaN(distance)) {
-            lastDistance = distance;
-        }
-        distance = data.getPlayer().getLocation().toVector().setY(0).distance(target.getLocation().toVector().setY(0)) - .42;
-
+        lastDistance = distance;
+        distance = Math.abs(MathUtil.getDistance(data.getPlayer(), target) - 0.15);
+        //distance = data.getPlayer().getLocation().toVector().setY(0).distance(target.getLocation().toVector().setY(0)) - .42;
         ++hits;
 
         hitTicks = 0;
