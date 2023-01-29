@@ -5,7 +5,7 @@ import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
 
-@CheckInfo(name = "Inventory (A)", description = "Checks for sprinting in inventory.", experimental = true)
+@CheckInfo(name = "Inventory (A)", description = "Checks for sprinting in inventory.")
 public final class InventoryA extends Check {
 
     public InventoryA(final PlayerData data) {

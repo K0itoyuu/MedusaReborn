@@ -51,6 +51,7 @@ public final class CheckManager {
             InventoryA.class,
             InventoryB.class,
             InventoryC.class,
+            InventoryD.class,
             ProtocolA.class,
             ProtocolB.class,
             ProtocolC.class,

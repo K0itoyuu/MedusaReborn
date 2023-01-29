@@ -288,6 +288,11 @@ checks:
         enabled: true
         max-violations: 5
         punish-command: ''
+      # Checks for moving or rotation in inventory.
+      d:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
     # Protocol Detections: Checks for various flaws in Minecraft's networking protocol hacked clients may have.
     protocol:
       # Checks if the player looks too far up or down.

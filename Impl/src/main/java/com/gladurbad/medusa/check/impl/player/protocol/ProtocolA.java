@@ -24,12 +24,6 @@ public final class ProtocolA extends Check {
 
             if (Math.abs(pitch) > 90) {
                 fail("Pitch: " + pitch);
-                double x,y,z,yaw;
-                x = data.getPositionProcessor().getX();
-                y = data.getPositionProcessor().getY();
-                z = data.getPositionProcessor().getZ();
-                yaw = data.getRotationProcessor().getYaw();
-                PacketUtil.sendPacket(data.getPlayer(), PacketUtil.S08PacketPlayerPosLook(data.getPlayer(), x,y,z,yaw,90.0,false));
             }
         }
     }
