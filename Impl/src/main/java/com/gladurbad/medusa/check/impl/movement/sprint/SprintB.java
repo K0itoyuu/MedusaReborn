@@ -17,8 +17,12 @@ public class SprintB extends Check {
     public void handle(Packet packet) {
         if (data.getActionProcessor().isSprinting() && data.getActionProcessor().getSprintingTicks() > 10) {
             if (data.getPlayer().hasPotionEffect(PotionEffectType.BLINDNESS)) {
-                fail();
+                buffer += 0.1;
                 data.getPlayer().setSprinting(false);
+            }
+            if (buffer >= 1.0) {
+                fail();
+                buffer = 0;
             }
         }
     }

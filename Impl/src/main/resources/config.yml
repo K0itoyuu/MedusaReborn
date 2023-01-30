@@ -238,6 +238,11 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+      # Checks player spoof sprint
+      c:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     # NoSlow Detections: Capable of detecting Vanilla NoSlow. Other NoSlow modules are covered by other checks.
     noslow:
       # Checks if the player is blocking noslow
@@ -276,7 +281,11 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
-
+      # FakeBlock or GhostBlock
+      f:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     step:
       # Checks Step (Simple)
       a:

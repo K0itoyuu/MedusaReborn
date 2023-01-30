@@ -106,7 +106,7 @@ public final class PositionProcessor {
 
         mathematicallyOnGround = y % 0.015625 == 0.0;
 
-        if (mathematicallyOnGround && (deltaY == lastDeltaY) && airTicks < 1) {
+        if (mathematicallyOnGround && (deltaY == lastDeltaY) && airTicks < 1 && data.getPlayer().isOnGround()) {
             groundX = this.x;
             groundY = this.y;
             groundZ = this.z;

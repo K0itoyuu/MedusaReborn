@@ -31,6 +31,10 @@ public final class PlayerUtil {
         return data.getPositionProcessor().getY() % 0.015625 == 0.0;
     }
 
+    public List<Block> getNearBlocks(PlayerData data) {
+        return data.getPositionProcessor().getBoundingBox().expand(1, 1, 1).getBlocks(data.getPlayer().getWorld());
+    }
+
     public void setBackOnGround(PlayerData playerData) {
         if (Double.isNaN(playerData.getPositionProcessor().getGroundY())) return;
         double x = playerData.getPositionProcessor().getGroundX();

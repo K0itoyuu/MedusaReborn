@@ -14,10 +14,15 @@ public class SprintA extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (data.getActionProcessor().isSprinting()) {
+        if (data.getActionProcessor().isSprinting() && data.getActionProcessor().getSprintingTicks() > 10) {
             if (data.getPlayer().getFoodLevel() <= 6) {
-                fail("FoodLevel: " + data.getPlayer().getFoodLevel());
+                buffer += 0.1;
                 data.getPlayer().setSprinting(false);
+            }
+
+            if (buffer >= 1.0) {
+                fail("FoodLevel: " + data.getPlayer().getFoodLevel());
+                buffer = 0;
             }
         }
     }

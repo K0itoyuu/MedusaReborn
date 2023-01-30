@@ -17,8 +17,10 @@ public class KillAuraH extends Check {
             if (Double.isNaN(data.getRotationProcessor().getAttackYaw())) return;
             if (data.getCombatProcessor().getHitTicks() == 1) {
                 double diff = Math.abs(data.getRotationProcessor().getAttackYaw() - data.getRotationProcessor().getYaw());
-                if (diff > 15.0) {
+                if (diff > 20.0) {
                     buffer += 1.0;
+                } else {
+                    buffer = Math.max(0,buffer - 0.1);
                 }
                 if (buffer >= 3.0) {
                     fail("Diff: " + diff);
