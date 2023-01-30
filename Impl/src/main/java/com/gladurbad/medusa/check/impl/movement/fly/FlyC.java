@@ -21,7 +21,7 @@ public class FlyC extends Check {
             double deltaY = data.getPositionProcessor().getDeltaY();
             double lastDeltaY = data.getPositionProcessor().getLastDeltaY();
             double acceleration = Math.abs(deltaY - lastDeltaY);
-            boolean exempt = isExempt(ExemptType.JOINED, ExemptType.TRAPDOOR, ExemptType.VELOCITY, ExemptType.FLYING, ExemptType.WEB, ExemptType.TELEPORT, ExemptType.SLIME, ExemptType.CLIMBABLE, ExemptType.UNDER_BLOCK, ExemptType.SLAB, ExemptType.STAIRS);
+            boolean exempt = isExempt(ExemptType.LIQUID,ExemptType.JOINED, ExemptType.TRAPDOOR, ExemptType.VELOCITY, ExemptType.FLYING, ExemptType.WEB, ExemptType.TELEPORT, ExemptType.SLIME, ExemptType.CLIMBABLE, ExemptType.UNDER_BLOCK, ExemptType.SLAB, ExemptType.STAIRS);
             if (acceleration == 0.0 && inAir && !exempt) {
                 buffer += 4.0;
                 if (buffer > 20.0) {

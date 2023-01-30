@@ -80,6 +80,7 @@ public final class ActionProcessor {
                 respawning = true;
                 inventory = false;
                 windowSlot = -1;
+                data.getVelocityProcessor().setBypassTicks(0);
                 break;
         }
     }

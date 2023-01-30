@@ -14,7 +14,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-@CheckInfo(name = "Reach (A)",description = "Check attacking distance")
+@CheckInfo(name = "Reach (A)",description = "Check attacking distance",experimental = true)
 public class ReachA extends Check {
 
     public ReachA(PlayerData data) {

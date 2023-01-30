@@ -34,7 +34,7 @@ public class RotationA extends Check {
                     ++offGroundTicks;
                 }
                 double angle = Math.toDegrees(positionDifference.angle(direction));
-                boolean invalid = !data.getPositionProcessor().isInLiquid() && angle > 60.0 && data.getPositionProcessor().getDeltaXZ() > 0.251 && offGroundTicks < 8 && !isExempt(ExemptType.TELEPORT, ExemptType.VELOCITY);
+                boolean invalid = !data.getPositionProcessor().isInLiquid() && angle > 69.0 && data.getPositionProcessor().getDeltaXZ() > 0.256 && offGroundTicks < 8 && !isExempt(ExemptType.TELEPORT, ExemptType.VELOCITY);
                 debug("angle=" + angle + " dxz=" + data.getPositionProcessor().getDeltaXZ() + " buffer=" + buffer);
                 if (invalid) {
                     buffer += 1.25;

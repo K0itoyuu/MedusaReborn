@@ -13,7 +13,7 @@ public class StepA extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (packet.isPosition() && data.getJoinTime() > 1000) {
+        if (packet.isPosition() && data.getJoinTime() > 6000) {
             if (data.getPositionProcessor().getDeltaY() >= 1) {
                 if (data.getPositionProcessor().getAirTicks() <= 1) {
                     fail("DeltaY: " + data.getPositionProcessor().getDeltaY() + ", at:" + data.getPositionProcessor().getAirTicks());

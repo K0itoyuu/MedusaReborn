@@ -6,6 +6,8 @@ import com.gladurbad.medusa.check.impl.combat.autoblock.AutoBlockB;
 import com.gladurbad.medusa.check.impl.combat.killaura.KillAuraF;
 import com.gladurbad.medusa.check.impl.combat.killaura.*;
 import com.gladurbad.medusa.check.impl.combat.reach.ReachA;
+import com.gladurbad.medusa.check.impl.combat.velocity.VelocityA;
+import com.gladurbad.medusa.check.impl.combat.velocity.VelocityB;
 import com.gladurbad.medusa.check.impl.movement.fly.*;
 import com.gladurbad.medusa.check.impl.movement.jesus.JesusA;
 import com.gladurbad.medusa.check.impl.movement.jesus.JesusB;
@@ -30,13 +32,17 @@ import java.util.List;
 public final class CheckManager {
 
     public static final Class<?>[] CHECKS = new Class[] {
+            VelocityA.class,
+            VelocityB.class,
             NoSlowA.class,
             NoSlowB.class,
             FlyA.class,
             FlyB.class,
             FlyC.class,
             FlyD.class,
+            FlyE.class,
             SpeedA.class,
+            SpeedB.class,
             StepA.class,
             SprintA.class,
             SprintB.class,

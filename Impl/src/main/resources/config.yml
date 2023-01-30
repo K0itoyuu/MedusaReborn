@@ -31,7 +31,7 @@ appearance:
 
   themes:
     Medusa:
-      message: 'Medusa » &f%player% &7failed &f%checkName% (%checkType%) &7(x%vl%) &c%dev%'
+      message: '&aMedusa » &f%player% &7failed &f%checkName% (%checkType%) &7(x%vl%) &c%dev%'
       colors:
         - '&a'
         - '&2'
@@ -110,7 +110,7 @@ appearance:
 # (VL = Violation Level = How many times a player has flagged the check)
 violations:
   # Changes how Medusa's default notifications look.
-  alert-format: '&aMedusa » &f%player% &7failed &f%checkName% (%checkType%) &7(x%vl%) &c%dev%'
+  alert-format: '&8[&b&lMedusa&r&8] &f%player% &7has failed &f%checkName% (%checkType%) &c(x%vl%)'
   # Time which has to be elapsed between notifications to prevent chat spam.
   alert-cooldown: 0
   # How much VL the check has to have in order to notify staff.
@@ -125,11 +125,23 @@ violations:
 checks:
   # Combat Detections: Offers various checks designed to detect modules used to give a significant combat advantage.
   combat:
-    # Reach Detections:
+    # Velocity Detections: 懒得写
+    velocity:
+      # Checks if the player vertical velocity
+      a:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
+      # Checks if the player horizontal velocity
+      b:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
+    # Reach Detections: 这玩意的数学我教不会
     reach:
       # Checks if the player using reach.
       a:
-        enabled: true
+        enabled: false
         max-violations: 5
         punish-command: ''
     # KillAura Detections: Capable of detecting some KillAura modules on various clients. Recommended to ban for these
@@ -210,6 +222,11 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+      # Checks for strafe
+      b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     sprint:
       # Checks player foodlevel
       a:
@@ -251,6 +268,11 @@ checks:
         punish-command: ''
       # Patch some bypass
       d:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # ground spoof 2
+      e:
         enabled: true
         max-violations: 10
         punish-command: ''
