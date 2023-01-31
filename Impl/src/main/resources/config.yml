@@ -286,18 +286,22 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
-    step:
-      # Checks Step (Simple)
-      a:
-        enabled: true
-        max-violations: 10
-        punish-command: ''
   # Player Detections: Offers various checks to detect miscellaneous cheats not covered by the other categories.
   player:
     # Rotation Detections: Checks for rotation cheats
     rotation:
       # Rotation direction
       a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Scaffold Hand
+      b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Scaffold Rotation
+      c:
         enabled: true
         max-violations: 10
         punish-command: ''
@@ -317,6 +321,16 @@ checks:
       c:
         enabled: true
         max-violations: 10
+        punish-command: ''
+      # FreeCam
+      d:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
+      # HighPing
+      e:
+        enabled: true
+        max-violations: 5
         punish-command: ''
     # Inventory Detections: Checks for various cheats related to inventory (InventoryWalk, ChestSteal)
     inventory:

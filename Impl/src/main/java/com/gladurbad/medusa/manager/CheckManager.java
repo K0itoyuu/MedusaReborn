@@ -15,13 +15,12 @@ import com.gladurbad.medusa.check.impl.movement.jesus.JesusC;
 import com.gladurbad.medusa.check.impl.movement.noslow.*;
 import com.gladurbad.medusa.check.impl.movement.sprint.*;
 import com.gladurbad.medusa.check.impl.movement.speed.*;
-import com.gladurbad.medusa.check.impl.movement.step.StepA;
-import com.gladurbad.medusa.check.impl.player.client.ClientA;
-import com.gladurbad.medusa.check.impl.player.client.ClientB;
-import com.gladurbad.medusa.check.impl.player.client.ClientC;
+import com.gladurbad.medusa.check.impl.player.client.*;
 import com.gladurbad.medusa.check.impl.player.inventory.*;
 import com.gladurbad.medusa.check.impl.player.protocol.*;
 import com.gladurbad.medusa.check.impl.player.rotation.RotationA;
+import com.gladurbad.medusa.check.impl.player.rotation.RotationB;
+import com.gladurbad.medusa.check.impl.player.rotation.RotationC;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
 
@@ -44,7 +43,6 @@ public final class CheckManager {
             FlyF.class,
             SpeedA.class,
             SpeedB.class,
-            StepA.class,
             SprintA.class,
             SprintB.class,
             SprintC.class,
@@ -78,9 +76,13 @@ public final class CheckManager {
             ProtocolJ.class,
             ProtocolK.class,
             RotationA.class,
+            RotationB.class,
+            RotationC.class,
             ClientA.class,
             ClientB.class,
             ClientC.class,
+            ClientD.class,
+            ClientE.class
     };
 
     private static final List<Constructor<?>> CONSTRUCTORS = new ArrayList<>();

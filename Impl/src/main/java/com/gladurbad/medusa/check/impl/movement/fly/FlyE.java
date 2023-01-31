@@ -6,7 +6,6 @@ import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.exempt.type.ExemptType;
 import com.gladurbad.medusa.packet.Packet;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import java.util.List;
@@ -21,19 +20,20 @@ public class FlyE extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isFlying()) {
-            final List<Block> blocks = data.getPositionProcessor().getBoundingBox().expand(1, 1, 1).getBlocks(
+            /*final List<Block> blocks = data.getPositionProcessor().getBoundingBox().expand(1, 2, 1).getBlocks(
                     data.getPlayer().getWorld()
             );
 
-            boolean exempt = isExempt(ExemptType.LIQUID,ExemptType.TELEPORT,ExemptType.UNDER_BLOCK,ExemptType.STAIRS);
+            boolean exempt = isExempt(ExemptType.PLACING,ExemptType.LIQUID,ExemptType.TELEPORT,ExemptType.UNDER_BLOCK,ExemptType.STAIRS);
             final boolean check = blocks.stream().filter(block -> !block.isEmpty()).count() == 0;
             WrappedPacketInFlying wrapped = new WrappedPacketInFlying(packet.getRawPacket());
             if (check) debug(exempt + " " + wrapped.isOnGround() + " " + data.getPositionProcessor().isMathematicallyOnGround());
             if (check && !exempt) {
-                if (wrapped.isOnGround() && !data.getPositionProcessor().isMathematicallyOnGround()) {
+                if (wrapped.isOnGround()) {
                     fail("c:" + check + " ,pg:" + wrapped.isOnGround());
                 }
-            }
+            }*/
+            //误报到姥姥家
         }
     }
 }

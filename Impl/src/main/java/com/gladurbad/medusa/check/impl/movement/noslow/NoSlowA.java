@@ -32,7 +32,7 @@ public class NoSlowA extends Check {
             }
 
         } else {
-            buffer = Math.max(buffer-1,0);
+            buffer = Math.max(buffer-0.4,0);
         }
     }
 }
