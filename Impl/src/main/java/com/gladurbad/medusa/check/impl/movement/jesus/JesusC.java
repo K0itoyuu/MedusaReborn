@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 
-@CheckInfo(name = "Jesus (C)",description = "swimming speed")
+@CheckInfo(name = "Jesus (C)",description = "Abnormal swimming speed")
 public class JesusC extends Check {
 
     public JesusC(PlayerData data) {
