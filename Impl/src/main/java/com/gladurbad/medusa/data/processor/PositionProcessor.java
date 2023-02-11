@@ -31,7 +31,8 @@ public final class PositionProcessor {
             lastX, lastY, lastZ,
             deltaX, deltaY, deltaZ, deltaXZ,
             lastDeltaX, lastDeltaZ, lastDeltaY, lastDeltaXZ,
-            groundX,groundY,groundZ;
+            groundX,groundY,groundZ,
+            fallDistance;
 
     private boolean flying, inVehicle, inLiquid, inAir, inWeb,
             blockNearHead, onClimbable, onSolidGround, nearVehicle, onSlime,
@@ -90,6 +91,8 @@ public final class PositionProcessor {
         deltaZ = this.z - lastZ;
         deltaXZ = Math.hypot(deltaX, deltaZ);
 
+        if (this.y < this.lastY) fallDistance += Math.abs(this.deltaY);
+
         if (teleports.size() > 150) {
             teleports.remove(0);
         }
@@ -110,6 +113,7 @@ public final class PositionProcessor {
             groundX = this.x;
             groundY = this.y;
             groundZ = this.z;
+            fallDistance = 0;
         }
     }
 

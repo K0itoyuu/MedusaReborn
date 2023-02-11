@@ -7,6 +7,7 @@ import com.gladurbad.medusa.packet.Packet;
 import io.github.retrooper.packetevents.packetwrappers.play.in.blockplace.WrappedPacketInBlockPlace;
 import io.github.retrooper.packetevents.utils.player.Direction;
 import org.bukkit.Location;
+import org.bukkit.Material;
 
 @CheckInfo(name = "Rotation (B)",description = "Checks for face occlusion when placing blocks.")
 public class RotationB extends Check {
@@ -37,6 +38,7 @@ public class RotationB extends Check {
             if (!validInteraction) {
                 assert direction != null;
                 fail("face=" + direction.getFaceValue());
+                data.getPlayer().getWorld().getBlockAt(blockLocation).setType(Material.AIR);
             }
         }
     }

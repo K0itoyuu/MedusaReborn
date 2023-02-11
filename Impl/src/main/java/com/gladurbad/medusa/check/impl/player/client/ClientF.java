@@ -5,7 +5,7 @@ import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
 
-@CheckInfo(name = "Client (F)",description = "Force player sending C0F")
+@CheckInfo(name = "Client (F)",description = "Force player send C0F")
 public class ClientF extends Check {
 
     public ClientF(PlayerData data) {

@@ -288,6 +288,18 @@ checks:
         punish-command: ''
   # Player Detections: Offers various checks to detect miscellaneous cheats not covered by the other categories.
   player:
+    # Scaffold Detections: Checks for scaffold cheats
+    scaffold:
+      # Invalid Direction
+      a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Tower
+      b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     # Rotation Detections: Checks for rotation cheats
     rotation:
       # Rotation direction
@@ -334,6 +346,11 @@ checks:
         punish-command: ''
       # 强制客户端发送正确的C0F
       f:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
+      # C0F Spam Crasher
+      g:
         enabled: true
         max-violations: 5
         punish-command: ''

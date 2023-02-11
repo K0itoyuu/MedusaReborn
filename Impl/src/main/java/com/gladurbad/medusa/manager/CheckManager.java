@@ -21,6 +21,8 @@ import com.gladurbad.medusa.check.impl.player.protocol.*;
 import com.gladurbad.medusa.check.impl.player.rotation.RotationA;
 import com.gladurbad.medusa.check.impl.player.rotation.RotationB;
 import com.gladurbad.medusa.check.impl.player.rotation.RotationC;
+import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldA;
+import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldB;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
 
@@ -31,6 +33,8 @@ import java.util.List;
 public final class CheckManager {
 
     public static final Class<?>[] CHECKS = new Class[] {
+            ScaffoldA.class,
+            ScaffoldB.class,
             VelocityA.class,
             VelocityB.class,
             NoSlowA.class,
@@ -84,7 +88,8 @@ public final class CheckManager {
             ClientC.class,
             ClientD.class,
             ClientE.class,
-            ClientF.class
+            ClientF.class,
+            ClientG.class
     };
 
     private static final List<Constructor<?>> CONSTRUCTORS = new ArrayList<>();

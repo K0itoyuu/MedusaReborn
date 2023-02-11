@@ -13,7 +13,9 @@ public class ClientE extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (data.getTransactionProcessor().getServerTransactionPing() > 1500) {
+        if (data.getJoinTime() < 10000) return;
+
+        if (data.getTransactionProcessor().getServerTransactionPing() > 3000) {
             buffer += 0.5;
         } else {
             buffer -= 0.2;
