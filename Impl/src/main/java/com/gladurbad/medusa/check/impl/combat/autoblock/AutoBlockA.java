@@ -19,6 +19,7 @@ public class AutoBlockA extends Check {
             else buffer = Math.max(buffer-1,0);
             if (buffer>5) {
                 fail();
+                packet.setCancelled(true);
                 buffer = 0;
             }
         }

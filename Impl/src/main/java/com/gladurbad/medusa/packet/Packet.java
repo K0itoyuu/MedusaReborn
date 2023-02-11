@@ -11,10 +11,20 @@ public final class Packet {
     private final NMSPacket rawPacket;
     private final byte packetId;
 
+    private boolean cancelled;
+
     public Packet(Direction direction, NMSPacket rawPacket, byte packetId) {
         this.direction = direction;
         this.rawPacket = rawPacket;
         this.packetId = packetId;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
+
+    public boolean isCancelled() {
+        return this.cancelled;
     }
 
     public boolean isReceiving() {

@@ -16,7 +16,8 @@ public final class RotationProcessor {
 
     private float yaw, pitch, lastYaw, lastPitch, attackYaw, attackPitch,lastAttackYaw, lastAttackPitch,
         deltaYaw, deltaPitch, lastDeltaYaw, lastDeltaPitch,
-        joltYaw, joltPitch, lastJoltYaw, lastJoltPitch, gcd;
+        joltYaw, joltPitch, lastJoltYaw, lastJoltPitch, gcd,
+        blockPlaceYaw,blockPlacePitch,lastBlockPlaceYaw,lastBlockPlacePitch;
 
     private int sensitivity, lastCinematic, cinematicTicks;
 
@@ -112,5 +113,15 @@ public final class RotationProcessor {
     public void setAttackYaw(double attackYaw) {
         this.lastAttackYaw = this.attackYaw;
         this.attackYaw = (float) attackYaw;
+    }
+
+    public void setBlockPlacePitch(float blockPlacePitch) {
+        this.lastBlockPlacePitch = this.blockPlacePitch;
+        this.blockPlacePitch = blockPlacePitch;
+    }
+
+    public void setBlockPlaceYaw(float blockPlaceYaw) {
+        this.lastBlockPlaceYaw = this.blockPlaceYaw;
+        this.blockPlaceYaw = blockPlaceYaw;
     }
 }

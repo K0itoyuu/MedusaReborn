@@ -33,8 +33,14 @@ public final class SendingPacketProcessor  {
         if (!data.getPlayer().hasPermission("medusa.bypass") || data.getPlayer().isOp()) {
             data.getChecks().forEach(check -> check.handle(packet));
         }
-        if (System.currentTimeMillis() - cur >= 500 && data.getTransactionProcessor().isCanSend()) {
+        if (System.currentTimeMillis() - cur >= 100 && data.getTransactionProcessor().isCanSend()) {
             final WrappedPacketOutTransaction wrapped = new WrappedPacketOutTransaction(0, (short) new Random().nextInt(32767),false);
+            data.getTransactionProcessor().handleTransactionSend(wrapped);
+            cur = System.currentTimeMillis();
+            return;
+        }
+        if (packet.isOutPosition()) {
+            final WrappedPacketOutTransaction wrapped = new WrappedPacketOutTransaction(packet.getRawPacket());
             data.getTransactionProcessor().handleTransactionSend(wrapped);
             cur = System.currentTimeMillis();
         }

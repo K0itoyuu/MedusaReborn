@@ -20,20 +20,13 @@ public class FlyE extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isFlying()) {
-            /*final List<Block> blocks = data.getPositionProcessor().getBoundingBox().expand(1, 2, 1).getBlocks(
-                    data.getPlayer().getWorld()
-            );
-
-            boolean exempt = isExempt(ExemptType.PLACING,ExemptType.LIQUID,ExemptType.TELEPORT,ExemptType.UNDER_BLOCK,ExemptType.STAIRS);
-            final boolean check = blocks.stream().filter(block -> !block.isEmpty()).count() == 0;
-            WrappedPacketInFlying wrapped = new WrappedPacketInFlying(packet.getRawPacket());
-            if (check) debug(exempt + " " + wrapped.isOnGround() + " " + data.getPositionProcessor().isMathematicallyOnGround());
-            if (check && !exempt) {
-                if (wrapped.isOnGround()) {
-                    fail("c:" + check + " ,pg:" + wrapped.isOnGround());
+            WrappedPacketInFlying flying = new WrappedPacketInFlying(packet.getRawPacket());
+            if (data.getPlayer().getFallDistance() > 3) {
+                if (flying.isOnGround()) {
+                    flying.setOnGround(false);
+                    fail();
                 }
-            }*/
-            //误报到姥姥家
+            }
         }
     }
 }

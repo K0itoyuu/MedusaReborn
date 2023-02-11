@@ -28,6 +28,7 @@ public class NoSlowA extends Check {
 
             if (buffer>=10) {
                 fail("MovementSpeed: " + diff + ", BlockTicks: " + data.getPositionProcessor().getBlockTicks());
+
                 buffer = 0;
             }
 

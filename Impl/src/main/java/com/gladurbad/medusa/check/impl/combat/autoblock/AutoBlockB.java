@@ -17,6 +17,7 @@ public class AutoBlockB extends Check {
         if (packet.isUseEntity() && data.getCombatProcessor().getHitTicks() == 0) {
             if (data.getActionProcessor().isBlocking() && data.getPositionProcessor().getFastBlockTicks() > 15) {
                 fail("BlockTicks: " + data.getPositionProcessor().getFastBlockTicks());
+                packet.setCancelled(true);
             }
         }
     }

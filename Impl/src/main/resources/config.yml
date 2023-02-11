@@ -332,6 +332,11 @@ checks:
         enabled: true
         max-violations: 5
         punish-command: ''
+      # 强制客户端发送正确的C0F
+      f:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
     # Inventory Detections: Checks for various cheats related to inventory (InventoryWalk, ChestSteal)
     inventory:
       # Checks if the player is moving while in their inventory.
@@ -408,6 +413,11 @@ checks:
         punish-command: ''
       # PingSpoof
       k:
+        enabled: true
+        max-violations: 15
+        punish-command: ''
+      # Invalid block dig packet
+      l:
         enabled: true
         max-violations: 15
         punish-command: ''

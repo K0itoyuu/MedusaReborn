@@ -20,7 +20,7 @@ public final class NetworkListener extends PacketListenerDynamic {
 
             Medusa.INSTANCE.getPacketExecutor().execute(() -> {
                 Medusa.INSTANCE.getReceivingPacketProcessor()
-                        .handle(data, new Packet(Packet.Direction.RECEIVE, event.getNMSPacket(), event.getPacketId()));
+                        .handle(data, new Packet(Packet.Direction.RECEIVE, event.getNMSPacket(), event.getPacketId()),event);
             });
         }
     }

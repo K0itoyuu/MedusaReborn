@@ -24,6 +24,7 @@ public class RotationC extends Check {
                 boolean invalid = (pitch > 88.3f && !direction.equals(Direction.UP)) || (pitch < -88.3f && !direction.equals(Direction.DOWN));
                 if (invalid) {
                     buffer += 1.0;
+                    packet.setCancelled(true);
                 }
 
                 if (buffer >= 3.5) {

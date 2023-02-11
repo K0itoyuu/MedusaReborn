@@ -8,6 +8,7 @@ import com.gladurbad.medusa.packet.Packet;
 import com.gladurbad.medusa.util.PacketUtil;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
 import io.github.retrooper.packetevents.packetwrappers.play.in.transaction.WrappedPacketInTransaction;
+import io.github.retrooper.packetevents.utils.player.ClientVersion;
 
 import java.util.LinkedList;
 

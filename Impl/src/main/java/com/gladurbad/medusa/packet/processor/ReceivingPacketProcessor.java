@@ -2,7 +2,9 @@ package com.gladurbad.medusa.packet.processor;
 
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.exempt.type.ExemptType;
+import io.github.retrooper.packetevents.event.impl.PacketPlayReceiveEvent;
 import io.github.retrooper.packetevents.packetwrappers.play.in.blockdig.WrappedPacketInBlockDig;
+import io.github.retrooper.packetevents.packetwrappers.play.in.blockplace.WrappedPacketInBlockPlace;
 import io.github.retrooper.packetevents.packetwrappers.play.in.clientcommand.WrappedPacketInClientCommand;
 import io.github.retrooper.packetevents.packetwrappers.play.in.entityaction.WrappedPacketInEntityAction;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
@@ -12,11 +14,12 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.transaction.Wrapp
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import com.gladurbad.medusa.packet.Packet;
 import io.github.retrooper.packetevents.packetwrappers.play.in.windowclick.WrappedPacketInWindowClick;
+import io.github.retrooper.packetevents.utils.player.Direction;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 
 public final class ReceivingPacketProcessor  {
-    public void handle(final PlayerData data, final Packet packet) {
+    public void handle(final PlayerData data, final Packet packet, final PacketPlayReceiveEvent event) {
         if (packet.isEntityAction()) {
             final WrappedPacketInEntityAction wrapper = new WrappedPacketInEntityAction(packet.getRawPacket());
 
@@ -31,6 +34,11 @@ public final class ReceivingPacketProcessor  {
              data.getActionProcessor().handleClientCommand(wrapper);
         } else if (packet.isBlockPlace()) {
             data.getActionProcessor().handleBlockPlace();
+            final WrappedPacketInBlockPlace blockPlace = new WrappedPacketInBlockPlace(packet.getRawPacket());
+            if (blockPlace.getDirection().equals(Direction.OTHER)) {
+                data.getRotationProcessor().setBlockPlacePitch(data.getRotationProcessor().getPitch());
+                data.getRotationProcessor().setBlockPlaceYaw(data.getRotationProcessor().getYaw());
+            }
         } else if (packet.isHeldItemSlot()) {
             final WrappedPacketInHeldItemSlot wrapper = new WrappedPacketInHeldItemSlot(packet.getRawPacket());
             data.getActionProcessor().handleHeldItemSlot(wrapper);
@@ -68,6 +76,9 @@ public final class ReceivingPacketProcessor  {
             data.getChecks().forEach(check -> {
                 check.handle(packet);
             });
+            if (packet.isCancelled()) {
+                event.setCancelled(true);
+            }
         }
     }
 }

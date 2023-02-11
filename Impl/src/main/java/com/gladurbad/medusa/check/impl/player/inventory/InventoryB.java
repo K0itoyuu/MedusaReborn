@@ -24,6 +24,7 @@ public final class InventoryB extends Check {
                 if (movements <= 1) {
                     if (++buffer > 5) {
                         fail("ticks=" + movements + " mode=1");
+                        packet.setCancelled(true);
                     }
                 } else {
                     buffer -= buffer > 0 ? 0.5 : 0;
@@ -32,6 +33,7 @@ public final class InventoryB extends Check {
                 if (movements == 0) {
                     if (++buffer > 5) {
                         fail("ticks=" + movements + " mode=4");
+                        packet.setCancelled(true);
                     }
                 } else {
                     buffer -= buffer > 0 ? 0.5 : 0;

@@ -2,9 +2,13 @@ package com.gladurbad.medusa.data;
 
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.processor.*;
+import com.gladurbad.medusa.util.PacketUtil;
+import com.gladurbad.medusa.util.PlayerUtil;
 import com.gladurbad.medusa.util.type.CustomLocation;
 import com.gladurbad.medusa.util.type.EvictingList;
 import com.gladurbad.medusa.util.type.Pair;
+import io.github.retrooper.packetevents.packetwrappers.play.out.playerinfo.WrappedPacketOutPlayerInfo;
+import io.github.retrooper.packetevents.utils.player.ClientVersion;
 import lombok.Getter;
 import lombok.Setter;
 import com.gladurbad.medusa.exempt.ExemptProcessor;
@@ -35,6 +39,10 @@ public final class PlayerData {
 
     public PlayerData(final Player player) {
         this.player = player;
+    }
+
+    public ClientVersion getClientVersion() {
+        return PlayerUtil.getClientVersion(player);
     }
 
     public long getJoinTime() {

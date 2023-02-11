@@ -16,9 +16,8 @@ public class InventoryC extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isUseEntity()) {
-            WrappedPacketInUseEntity wrapped = new WrappedPacketInUseEntity(packet.getRawPacket());
             if (data.getActionProcessor().isInventory()) {
-                wrapped.setTarget(null);
+                packet.setCancelled(true);
                 fail();
             }
         }

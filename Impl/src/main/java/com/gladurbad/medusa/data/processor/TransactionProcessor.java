@@ -39,7 +39,7 @@ public class TransactionProcessor {
             lastPing = ping;
             ping = PlayerUtil.getPing(data.getPlayer());
             canSend = true;
-        } else if (!(Bukkit.getPluginManager().getPlugin("Vulcan") != null && transaction.getActionNumber() < 0) || transaction.getActionNumber() != 1) {
+        } else if (transaction.getActionNumber() != serverTransactionID || transaction.getActionNumber() != 1) {
             invalidTransactionValue = transaction.getActionNumber();
             transactionReplyClient = System.currentTimeMillis();
             transactionPing = Math.abs(transactionReplyClient - transactionReplyServer);

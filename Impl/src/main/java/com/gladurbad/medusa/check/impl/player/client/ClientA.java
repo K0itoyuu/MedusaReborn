@@ -15,9 +15,9 @@ public class ClientA extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (packet.isPosLook()) {
+        if (packet.isFlying()) {
             buffer+=1;
-            if (buffer >= 100) {
+            if (buffer >= 40) {
                 fail();
             }
         }

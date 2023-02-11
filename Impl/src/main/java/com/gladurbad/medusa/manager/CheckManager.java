@@ -75,6 +75,7 @@ public final class CheckManager {
             ProtocolI.class,
             ProtocolJ.class,
             ProtocolK.class,
+            ProtocolL.class,
             RotationA.class,
             RotationB.class,
             RotationC.class,
@@ -82,7 +83,8 @@ public final class CheckManager {
             ClientB.class,
             ClientC.class,
             ClientD.class,
-            ClientE.class
+            ClientE.class,
+            ClientF.class
     };
 
     private static final List<Constructor<?>> CONSTRUCTORS = new ArrayList<>();
