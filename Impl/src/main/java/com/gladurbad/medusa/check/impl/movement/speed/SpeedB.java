@@ -34,7 +34,7 @@ public class SpeedB extends Check {
                 if (xSwitched) {
                     if (Math.abs(absDeltaX - absLastDeltaX) > 0.05) {
                         if (++buffer > 1.25) {
-                            fail();
+                            fail("diff:" + Math.abs(absDeltaX - absLastDeltaX));
                         }
                     }
                 } else {
@@ -43,7 +43,7 @@ public class SpeedB extends Check {
                 if (zSwitched) {
                     if (Math.abs(absDeltaZ - absLastDeltaZ) > 0.05) {
                         if (++buffer > 1.25) {
-                            fail();
+                            fail("diff:" + Math.abs(absDeltaX - absLastDeltaX));
                         }
                     }
                 } else {

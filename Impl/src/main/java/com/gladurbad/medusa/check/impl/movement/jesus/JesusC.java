@@ -28,6 +28,10 @@ public class JesusC extends Check {
                         data.getPlayer().getWorld()
                 );
 
+                boolean isExempt = isExempt(ExemptType.FLYING,ExemptType.VELOCITY);
+
+                if (isExempt) return;
+
                 final boolean check = blocks.stream().noneMatch(block -> block.getType() != Material.AIR && !block.getType().toString().contains("WATER"))
                         && blocks.stream().anyMatch(block -> block.getType().toString().contains("WATER"));
                 double diff = MathUtil.getDiff(data.getPositionProcessor());

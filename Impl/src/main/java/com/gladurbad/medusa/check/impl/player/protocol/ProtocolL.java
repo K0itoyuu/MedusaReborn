@@ -23,7 +23,6 @@ public class ProtocolL extends Check {
             WrappedPacketInBlockDig blockDig = new WrappedPacketInBlockDig(packet.getRawPacket());
             if (blockDig.getDigType().equals(WrappedPacketInBlockDig.PlayerDigType.RELEASE_USE_ITEM)) {
                 if (!blockDig.getDirection().equals(Direction.DOWN) || blockDig.getBlockPosition().getX() != 0 || blockDig.getBlockPosition().getY() != 0 || blockDig.getBlockPosition().getZ() != 0) {
-                    packet.setCancelled(true);
                     fail();
                 }
             }

@@ -37,7 +37,7 @@ public class ScaffoldB extends Check {
                         count++;
                     } else {
                         count = 0;
-                        buffer = Math.max(0,buffer - 0.5);
+                        buffer = 0;
                     }
 
                     if (lastMovement == movement) {

@@ -25,7 +25,6 @@ public class FlyC extends Check {
             if (acceleration == 0.0 && inAir && !exempt) {
                 buffer += 4.0;
                 if (buffer > 20.0) {
-                    PlayerUtil.setBackOnGround(data);
                     fail("deltaY:" + data.getPositionProcessor().getDeltaY());
                     buffer = 0;
                 }

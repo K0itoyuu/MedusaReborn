@@ -227,6 +227,11 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+      # Checks for motionY
+      c:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     sprint:
       # Checks player foodlevel
       a:
@@ -286,6 +291,11 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+      # airjump
+      g:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
   # Player Detections: Offers various checks to detect miscellaneous cheats not covered by the other categories.
   player:
     # Scaffold Detections: Checks for scaffold cheats
@@ -297,6 +307,11 @@ checks:
         punish-command: ''
       # Tower
       b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Scaffold
+      c:
         enabled: true
         max-violations: 10
         punish-command: ''
@@ -319,12 +334,12 @@ checks:
         punish-command: ''
     # Client Detections: Checks for client cheats (PingSpoof)
     client:
-      # Cancel Transaction
+      # Cancelled Transaction
       a:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Fake Transaction
+      # PingSpoof
       b:
         enabled: true
         max-violations: 10
@@ -333,26 +348,6 @@ checks:
       c:
         enabled: true
         max-violations: 10
-        punish-command: ''
-      # FreeCam
-      d:
-        enabled: true
-        max-violations: 5
-        punish-command: ''
-      # HighPing
-      e:
-        enabled: true
-        max-violations: 5
-        punish-command: ''
-      # 强制客户端发送正确的C0F
-      f:
-        enabled: true
-        max-violations: 5
-        punish-command: ''
-      # C0F Spam Crasher
-      g:
-        enabled: true
-        max-violations: 5
         punish-command: ''
     # Inventory Detections: Checks for various cheats related to inventory (InventoryWalk, ChestSteal)
     inventory:

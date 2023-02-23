@@ -4,24 +4,29 @@ import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
-import io.github.retrooper.packetevents.packetwrappers.play.out.transaction.WrappedPacketOutTransaction;
 
-@CheckInfo(name = "Client (B)",description = "Fake Transaction")
+@CheckInfo(name = "Client (B)",description = "PingSpoof")
 public class ClientB extends Check {
-
     public ClientB(PlayerData data) {
         super(data);
     }
 
     @Override
     public void handle(Packet packet) {
-        if (data.getJoinTime() < 6000) return;
+        long diff = Math.abs(data.getTransactionProcessor().getTransactionPing() - data.getTransactionProcessor().getPing());
+        boolean invalid = Math.abs(data.getTransactionProcessor().getTransactionPing() - data.getTransactionProcessor().getPing()) > 120;
 
-        if (data.getTransactionProcessor().isInvalidTransaction()) {
-            packet.setCancelled(true);
-            WrappedPacketOutTransaction transaction = new WrappedPacketOutTransaction(0,data.getTransactionProcessor().getTransactionID(),true);
-            data.getTransactionProcessor().handleTransactionSend(transaction);
-            fail("Server: " + data.getTransactionProcessor().getServerTransactionID() + ", Client:" + data.getTransactionProcessor().getInvalidTransactionValue());
+        if (data.getJoinTime() < 6000L) return;
+
+        if (invalid) {
+            buffer += 0.5;
+        } else {
+            buffer -= 0.5;
+        }
+
+        if (buffer>= 5.0) {
+            fail("diff:" + diff);
+            buffer = 0;
         }
     }
 }

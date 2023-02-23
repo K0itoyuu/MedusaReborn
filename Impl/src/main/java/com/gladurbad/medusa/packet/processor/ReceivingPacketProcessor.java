@@ -20,6 +20,7 @@ import org.bukkit.Bukkit;
 
 public final class ReceivingPacketProcessor  {
     public void handle(final PlayerData data, final Packet packet, final PacketPlayReceiveEvent event) {
+
         if (packet.isEntityAction()) {
             final WrappedPacketInEntityAction wrapper = new WrappedPacketInEntityAction(packet.getRawPacket());
 
@@ -73,12 +74,7 @@ public final class ReceivingPacketProcessor  {
             data.getActionProcessor().handleWindowClick(wrapper.getWindowSlot());
         }
         if (!data.getPlayer().hasPermission("medusa.bypass") || data.getPlayer().isOp()) {
-            data.getChecks().forEach(check -> {
-                check.handle(packet);
-            });
-            if (packet.isCancelled()) {
-                event.setCancelled(true);
-            }
+            data.getChecks().forEach(check -> check.handle(packet));
         }
     }
 }

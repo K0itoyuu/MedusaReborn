@@ -9,7 +9,7 @@ import com.gladurbad.medusa.packet.Packet;
  * Created on 11/10/2020 Package com.gladurbad.medusa.check.impl.player.scaffold by GladUrBad
  */
 
-@CheckInfo(name = "Protocol (G)", description = "Checks for packet order.")
+@CheckInfo(name = "Protocol (G)", description = "Post BlockPlace")
 public final class ProtocolG extends Check {
 
     private long lastBlockPlace;

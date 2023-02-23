@@ -20,7 +20,7 @@ public final class Packet {
     }
 
     public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+        this.cancelled = false;
     }
 
     public boolean isCancelled() {

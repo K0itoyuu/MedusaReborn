@@ -28,7 +28,6 @@ public class FlyF extends Check {
                     Block underBlock = location.getBlock();
                     if (underBlock.isEmpty()) {
                         buffer += 0.5;
-                        PlayerUtil.setBackOnGround(data);
                     }
                 }
             }

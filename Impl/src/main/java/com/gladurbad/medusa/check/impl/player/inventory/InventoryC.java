@@ -17,7 +17,6 @@ public class InventoryC extends Check {
     public void handle(Packet packet) {
         if (packet.isUseEntity()) {
             if (data.getActionProcessor().isInventory()) {
-                packet.setCancelled(true);
                 fail();
             }
         }

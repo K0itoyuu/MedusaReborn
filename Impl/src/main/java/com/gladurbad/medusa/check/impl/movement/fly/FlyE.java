@@ -35,7 +35,6 @@ public class FlyE extends Check {
             boolean isExempt = isExempt(ExemptType.UNDER_BLOCK,ExemptType.PLACING);
             if (!exempt && flying.isOnGround() && data.getPositionProcessor().isInAir() && !isExempt && data.getPositionProcessor().getFallDistance() > 3.3) {
                 fail();
-                packet.setCancelled(true);
                 exempt = false;
             }
         }

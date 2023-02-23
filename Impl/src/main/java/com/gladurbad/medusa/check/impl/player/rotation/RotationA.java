@@ -38,11 +38,11 @@ public class RotationA extends Check {
                 debug("angle=" + angle + " dxz=" + data.getPositionProcessor().getDeltaXZ() + " buffer=" + buffer);
                 if (invalid) {
                     buffer += 1.25;
-                    if (buffer >= 5.0) {
+                    if (buffer >= 8.0) {
                         fail(String.format("angle=%.2f, buffer=%.2f", angle, buffer));
                     }
                 } else {
-                    buffer = Math.max(buffer - 0.2, 0.0);
+                    buffer = Math.max(buffer - 0.35, 0.0);
                 }
             }
         } else if (packet.isTeleport()) {

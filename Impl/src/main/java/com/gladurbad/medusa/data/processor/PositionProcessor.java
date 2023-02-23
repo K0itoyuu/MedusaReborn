@@ -91,8 +91,6 @@ public final class PositionProcessor {
         deltaZ = this.z - lastZ;
         deltaXZ = Math.hypot(deltaX, deltaZ);
 
-        if (this.y < this.lastY) fallDistance += Math.abs(this.deltaY);
-
         if (teleports.size() > 150) {
             teleports.remove(0);
         }
@@ -113,7 +111,6 @@ public final class PositionProcessor {
             groundX = this.x;
             groundY = this.y;
             groundZ = this.z;
-            fallDistance = 0;
         }
     }
 
@@ -125,6 +122,11 @@ public final class PositionProcessor {
             lastLastFastBlockTicks = lastFastBlockTicks;
             lastFastBlockTicks = fastBlockTicks;
             fastBlockTicks = 0;
+        }
+        if (y < lastY)
+            fallDistance = inAir ? fallDistance + Math.abs(deltaY) : 0;
+        if (!inAir) {
+            fallDistance = 0;
         }
         blockTicks = data.getPlayer().isBlocking() ? blockTicks + 1 : Math.max((int) Math.floor((double) blockTicks / 2D), 0);
         groundTicks = onGround && mathematicallyOnGround ? groundTicks + 1 : 0;

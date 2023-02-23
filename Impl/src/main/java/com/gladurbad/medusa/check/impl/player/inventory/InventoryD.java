@@ -16,6 +16,10 @@ public class InventoryD extends Check {
     @Override
     public void handle(Packet packet) {
         if (data.getActionProcessor().isInventory()) {
+            boolean isExempt = isExempt(ExemptType.TELEPORT,ExemptType.VELOCITY,ExemptType.FLYING);
+
+            if (isExempt) return;
+
             if (packet.isRotation() && !packet.isPosLook()) {
                 buffer += 1.0;
                 if (buffer > 4.0) {

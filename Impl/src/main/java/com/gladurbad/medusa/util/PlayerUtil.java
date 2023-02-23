@@ -35,12 +35,9 @@ public final class PlayerUtil {
         return data.getPositionProcessor().getBoundingBox().expand(1, 1, 1).getBlocks(data.getPlayer().getWorld());
     }
 
-    public void setBackOnGround(PlayerData playerData) {
-        if (Double.isNaN(playerData.getPositionProcessor().getGroundY())) return;
-        double x = playerData.getPositionProcessor().getGroundX();
-        double y = playerData.getPositionProcessor().getGroundY();
-        double z = playerData.getPositionProcessor().getGroundZ();
-        PacketUtil.sendPacket(playerData.getPlayer(), PacketUtil.S08PacketPlayerPosLook(playerData.getPlayer(), x,y,z,playerData.getRotationProcessor().getYaw(),playerData.getRotationProcessor().getPitch(),false));
+    public double maxMotionY(Player player) {
+        double effectSpeed = 0.24D * getPotionLevel(player,PotionEffectType.JUMP);
+        return 0.42 + effectSpeed;
     }
 
     public ClientVersion getClientVersion(final Player player) {
@@ -56,14 +53,6 @@ public final class PlayerUtil {
             return player.getInventory().getBoots().getEnchantmentLevel(Enchantment.DEPTH_STRIDER);
         }
         return 0;
-    }
-
-    public double getBaseSpeed(Player player) {
-        return 0.36 + (getPotionLevel(player, PotionEffectType.SPEED) * 0.062f) + ((player.getWalkSpeed() - 0.2f) * 1.6f);
-    }
-
-    public double getBaseGroundSpeed(Player player) {
-        return 0.288 + (getPotionLevel(player, PotionEffectType.SPEED) * 0.062f) + ((player.getWalkSpeed() - 0.2f) * 1.6f);
     }
 
     public int getPotionLevel(final Player player, final PotionEffectType effect) {

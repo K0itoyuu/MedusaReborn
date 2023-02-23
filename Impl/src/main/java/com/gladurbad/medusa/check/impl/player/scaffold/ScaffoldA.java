@@ -20,7 +20,6 @@ public class ScaffoldA extends Check {
             WrappedPacketInBlockPlace blockPlace = new WrappedPacketInBlockPlace(packet.getRawPacket());
             if (blockPlace.getDirection().equals(Direction.INVALID)) {
                 fail();
-                packet.setCancelled(true);
             }
         }
     }

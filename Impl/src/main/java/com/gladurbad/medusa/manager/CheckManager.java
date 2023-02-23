@@ -23,6 +23,7 @@ import com.gladurbad.medusa.check.impl.player.rotation.RotationB;
 import com.gladurbad.medusa.check.impl.player.rotation.RotationC;
 import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldA;
 import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldB;
+import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldC;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
 
@@ -35,27 +36,41 @@ public final class CheckManager {
     public static final Class<?>[] CHECKS = new Class[] {
             ScaffoldA.class,
             ScaffoldB.class,
+            ScaffoldC.class,
+
             VelocityA.class,
             VelocityB.class,
+
             NoSlowA.class,
             NoSlowB.class,
+
+            ClientA.class,
+            ClientB.class,
+            ClientC.class,
+
             FlyA.class,
             FlyB.class,
             FlyC.class,
             FlyD.class,
             FlyE.class,
             FlyF.class,
+            FlyG.class,
+
             SpeedA.class,
             SpeedB.class,
+            SpeedC.class,
+
             SprintA.class,
             SprintB.class,
             SprintC.class,
-            ReachA.class,
+
             JesusA.class,
             JesusB.class,
             JesusC.class,
+
             AutoBlockA.class,
             AutoBlockB.class,
+
             KillAuraA.class,
             KillAuraB.class,
             KillAuraC.class,
@@ -64,10 +79,12 @@ public final class CheckManager {
             KillAuraF.class,
             KillAuraG.class,
             KillAuraH.class,
+
             InventoryA.class,
             InventoryB.class,
             InventoryC.class,
             InventoryD.class,
+
             ProtocolA.class,
             ProtocolB.class,
             ProtocolC.class,
@@ -78,18 +95,11 @@ public final class CheckManager {
             ProtocolH.class,
             ProtocolI.class,
             ProtocolJ.class,
-            ProtocolK.class,
+            //ProtocolK.class,
             ProtocolL.class,
             RotationA.class,
             RotationB.class,
             RotationC.class,
-            ClientA.class,
-            ClientB.class,
-            ClientC.class,
-            ClientD.class,
-            ClientE.class,
-            ClientF.class,
-            ClientG.class
     };
 
     private static final List<Constructor<?>> CONSTRUCTORS = new ArrayList<>();

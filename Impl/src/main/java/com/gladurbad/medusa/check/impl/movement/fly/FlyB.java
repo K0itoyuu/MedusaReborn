@@ -3,6 +3,7 @@ package com.gladurbad.medusa.check.impl.movement.fly;
 import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
+import com.gladurbad.medusa.exempt.type.ExemptType;
 import com.gladurbad.medusa.packet.Packet;
 import com.gladurbad.medusa.util.PlayerUtil;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
@@ -21,7 +22,7 @@ public class FlyB extends Check {
             WrappedPacketInFlying wrapped = new WrappedPacketInFlying(packet.getRawPacket());
             boolean packetOnGround = wrapped.isOnGround();
             boolean positionOnGround = PlayerUtil.isOnGround(data);
-            boolean invalid = (packetOnGround != positionOnGround);
+            boolean invalid = (packetOnGround != positionOnGround) && !isExempt(ExemptType.TELEPORT);
             if (invalid) {
                 buffer += 1;
             }
