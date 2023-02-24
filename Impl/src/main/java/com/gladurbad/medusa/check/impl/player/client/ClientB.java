@@ -14,9 +14,9 @@ public class ClientB extends Check {
     @Override
     public void handle(Packet packet) {
         long diff = Math.abs(data.getTransactionProcessor().getTransactionPing() - data.getTransactionProcessor().getPing());
-        boolean invalid = Math.abs(data.getTransactionProcessor().getTransactionPing() - data.getTransactionProcessor().getPing()) > 120;
+        boolean invalid = Math.abs(data.getTransactionProcessor().getTransactionPing() - data.getTransactionProcessor().getPing()) > 100;
 
-        if (data.getJoinTime() < 6000L) return;
+        if (data.getJoinTime() < 10000L) return;
 
         if (invalid) {
             buffer += 0.5;

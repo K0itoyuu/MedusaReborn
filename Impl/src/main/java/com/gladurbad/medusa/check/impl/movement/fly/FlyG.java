@@ -16,11 +16,11 @@ public class FlyG extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isPosition()) {
-            boolean isExempt = isExempt(ExemptType.FLYING,ExemptType.VELOCITY);
+            boolean isExempt = isExempt(ExemptType.FLYING,ExemptType.VELOCITY,ExemptType.COMBAT);
             double motionY = data.getPositionProcessor().getLastDeltaY();
             debug("my:" + motionY + ",fd:" + data.getPositionProcessor().getFallDistance());
-            if (motionY >= 0.1 && data.getPositionProcessor().getFallDistance() > 0.001 && !isExempt) {
-                fail();
+            if (motionY >= 0.1 && data.getPositionProcessor().getFallDistance() > 1E-5 && !isExempt) {
+                fail("my:" + motionY);
             }
         }
     }

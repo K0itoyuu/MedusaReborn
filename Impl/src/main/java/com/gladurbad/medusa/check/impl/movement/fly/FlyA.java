@@ -14,7 +14,7 @@ public class FlyA extends Check {
     @Override
     public void handle(Packet packet) {
         if (data.getTransactionProcessor().getServerTransactionPing() < 300 && packet.isPosition()) {
-            if (data.getPositionProcessor().isInAir() && !data.getPositionProcessor().isFlying() && data.getPositionProcessor().getAirTicks() >= 11) {
+            if (data.getPositionProcessor().isInAir() && !data.getPositionProcessor().isFlying() && data.getPositionProcessor().getAirTicks() >= 13) {
                 boolean invalid = Math.abs(data.getPositionProcessor().getDeltaY()) < 0.01;
                 if (invalid) {
                     fail("DeltaY: " + data.getPositionProcessor().getDeltaY());

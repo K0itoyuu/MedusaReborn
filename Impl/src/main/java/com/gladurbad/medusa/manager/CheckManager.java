@@ -47,6 +47,8 @@ public final class CheckManager {
             ClientA.class,
             ClientB.class,
             ClientC.class,
+            ClientD.class,
+            ClientE.class,
 
             FlyA.class,
             FlyB.class,
@@ -59,6 +61,7 @@ public final class CheckManager {
             SpeedA.class,
             SpeedB.class,
             SpeedC.class,
+            SpeedD.class,
 
             SprintA.class,
             SprintB.class,

@@ -16,7 +16,7 @@ public class VelocityB extends Check {
     public void handle(Packet packet) {
         if (packet.isFlying()) {
             if (data.getVelocityProcessor().getVelocityX() > 0 && data.getVelocityProcessor().getVelocityZ() > 0) {
-                if (data.getVelocityProcessor().getBypassTicks() > 20) {
+                if (data.getVelocityProcessor().getBypassTicks() > 18) {
                     double dxz = data.getPositionProcessor().getDeltaXZ();
                     debug("dxz:" + dxz);
                     boolean invalid = dxz <= 0.00006 && !isExempt(ExemptType.FLYING);

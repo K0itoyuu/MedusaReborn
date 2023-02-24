@@ -20,7 +20,7 @@ public enum ExemptType {
 
     VELOCITY(data -> data.getVelocityProcessor().isTakingVelocity()),
 
-    JOINED(data -> System.currentTimeMillis() - data.getJoinTime() < 5000L),
+    JOINED(data -> data.getJoinTime() < 5000L),
 
     TRAPDOOR(data -> data.getPositionProcessor().isNearTrapdoor()),
 

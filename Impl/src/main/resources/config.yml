@@ -232,6 +232,11 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+      # Test
+      d:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     sprint:
       # Checks player foodlevel
       a:
@@ -332,7 +337,7 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
-    # Client Detections: Checks for client cheats (PingSpoof)
+    # Client Detections: Checks for client cheats (PingSpoof / Timer / FreeCam)
     client:
       # Cancelled Transaction
       a:
@@ -348,6 +353,16 @@ checks:
       c:
         enabled: true
         max-violations: 10
+        punish-command: ''
+      # FreeCam
+      d:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # IP Risk
+      e:
+        enabled: true
+        max-violations: 114514
         punish-command: ''
     # Inventory Detections: Checks for various cheats related to inventory (InventoryWalk, ChestSteal)
     inventory:

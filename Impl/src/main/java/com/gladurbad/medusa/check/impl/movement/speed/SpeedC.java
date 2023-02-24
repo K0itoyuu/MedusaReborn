@@ -15,6 +15,9 @@ public class SpeedC extends Check {
 
     @Override
     public void handle(Packet packet) {
+
+        if (data.getJoinTime() < 6000L) return;
+
         if (packet.isPosition()) {
             double motionY = data.getPositionProcessor().getLastDeltaY();
             double limitMotionY = PlayerUtil.maxMotionY(data.getPlayer());
@@ -22,7 +25,7 @@ public class SpeedC extends Check {
             if (motionY > limitMotionY) {
                 buffer += motionY - limitMotionY;
             } else {
-                buffer = Math.max(0,buffer - 0.05);
+                buffer = Math.max(0,buffer - 0.025);
             }
 
             if (buffer >= 3.0) {

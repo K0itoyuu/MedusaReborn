@@ -4,6 +4,7 @@ import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.api.check.MedusaCheck;
 import com.gladurbad.api.listener.MedusaFlagEvent;
 import com.gladurbad.medusa.config.Config;
+import com.gladurbad.medusa.manager.RiskManager;
 import com.gladurbad.medusa.util.PlayerUtil;
 import com.gladurbad.medusa.util.anticheat.PunishUtil;
 import com.gladurbad.medusa.data.PlayerData;
@@ -85,6 +86,7 @@ public abstract class Check implements MedusaCheck {
         }
 
         if (vl > maxVl) {
+            RiskManager.getRiskIP().add(data.getPlayer().getAddress().getHostName());
             PunishUtil.punish(this, data);
             vl = 0;
             data.setCombatViolations(0);

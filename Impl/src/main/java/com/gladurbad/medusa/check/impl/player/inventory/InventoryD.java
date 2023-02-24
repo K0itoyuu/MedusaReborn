@@ -31,7 +31,7 @@ public class InventoryD extends Check {
                 boolean invalid = !isExempt(ExemptType.FLYING) && data.getVelocityProcessor().getBypassTicks() == 0 &&
                         data.getPositionProcessor().getDeltaXZ() > 0.185 && !data.getPositionProcessor().isTeleporting();
                 if (invalid) buffer += 1.0;
-                if (buffer > 4.0) {
+                if (buffer > 10.0) {
                     fail("dxz: " + data.getPositionProcessor().getDeltaXZ());
                     data.getPlayer().closeInventory();
                     data.getActionProcessor().setInventory(false);
@@ -39,7 +39,7 @@ public class InventoryD extends Check {
                 }
             }
         } else {
-            buffer = Math.max(buffer - 0.05,0);
+            buffer = Math.max(buffer - 0.1,0);
         }
     }
 }

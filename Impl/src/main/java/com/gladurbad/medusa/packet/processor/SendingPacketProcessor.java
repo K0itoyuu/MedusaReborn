@@ -1,6 +1,7 @@
 package com.gladurbad.medusa.packet.processor;
 
 import com.gladurbad.medusa.data.PlayerData;
+import com.gladurbad.medusa.util.MSTimer;
 import io.github.retrooper.packetevents.packetwrappers.play.out.entityteleport.WrappedPacketOutEntityTeleport;
 import io.github.retrooper.packetevents.packetwrappers.play.out.entityvelocity.WrappedPacketOutEntityVelocity;
 import com.gladurbad.medusa.packet.Packet;
@@ -12,7 +13,7 @@ import org.bukkit.Bukkit;
 import java.util.Random;
 
 public final class SendingPacketProcessor  {
-    private long cur;
+    private final MSTimer msTimer = new MSTimer();
     public void handle(final PlayerData data, final Packet packet) {
         if (packet.isVelocity()) {
             final WrappedPacketOutEntityVelocity wrapper = new WrappedPacketOutEntityVelocity(packet.getRawPacket());
@@ -33,10 +34,10 @@ public final class SendingPacketProcessor  {
         if (!data.getPlayer().hasPermission("medusa.bypass") || data.getPlayer().isOp()) {
             data.getChecks().forEach(check -> check.handle(packet));
         }
-        if (System.currentTimeMillis() - cur >= 100) {
+        if (msTimer.hasTimePassed(50L)) {
             final WrappedPacketOutTransaction wrapped = new WrappedPacketOutTransaction(0, (short) new Random().nextInt(32767),false);
             data.getTransactionProcessor().handleTransactionSend(wrapped);
-            cur = System.currentTimeMillis();
+            msTimer.reset();
         }
     }
 }

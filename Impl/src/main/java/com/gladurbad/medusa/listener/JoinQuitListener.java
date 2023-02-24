@@ -1,6 +1,7 @@
 package com.gladurbad.medusa.listener;
 
 import com.gladurbad.medusa.Medusa;
+import com.gladurbad.medusa.manager.RiskManager;
 import com.gladurbad.medusa.util.anticheat.AlertUtil;
 import io.github.retrooper.packetevents.event.PacketListener;
 import io.github.retrooper.packetevents.event.PacketListenerDynamic;
