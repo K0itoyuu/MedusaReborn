@@ -3,19 +3,24 @@ package com.gladurbad.medusa.manager;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.check.impl.combat.autoblock.AutoBlockA;
 import com.gladurbad.medusa.check.impl.combat.autoblock.AutoBlockB;
+import com.gladurbad.medusa.check.impl.combat.critical.CriticalA;
 import com.gladurbad.medusa.check.impl.combat.killaura.KillAuraF;
 import com.gladurbad.medusa.check.impl.combat.killaura.*;
-import com.gladurbad.medusa.check.impl.combat.reach.ReachA;
 import com.gladurbad.medusa.check.impl.combat.velocity.VelocityA;
 import com.gladurbad.medusa.check.impl.combat.velocity.VelocityB;
 import com.gladurbad.medusa.check.impl.movement.fly.*;
 import com.gladurbad.medusa.check.impl.movement.jesus.JesusA;
 import com.gladurbad.medusa.check.impl.movement.jesus.JesusB;
 import com.gladurbad.medusa.check.impl.movement.jesus.JesusC;
+import com.gladurbad.medusa.check.impl.movement.motion.MotionA;
+import com.gladurbad.medusa.check.impl.movement.motion.MotionB;
+import com.gladurbad.medusa.check.impl.movement.motion.MotionC;
 import com.gladurbad.medusa.check.impl.movement.noslow.*;
 import com.gladurbad.medusa.check.impl.movement.sprint.*;
 import com.gladurbad.medusa.check.impl.movement.speed.*;
 import com.gladurbad.medusa.check.impl.player.client.*;
+import com.gladurbad.medusa.check.impl.player.impossible.ImpossibleA;
+import com.gladurbad.medusa.check.impl.movement.speed.SpeedD;
 import com.gladurbad.medusa.check.impl.player.inventory.*;
 import com.gladurbad.medusa.check.impl.player.protocol.*;
 import com.gladurbad.medusa.check.impl.player.rotation.RotationA;
@@ -34,6 +39,14 @@ import java.util.List;
 public final class CheckManager {
 
     public static final Class<?>[] CHECKS = new Class[] {
+            CriticalA.class,
+
+            MotionA.class,
+            MotionB.class,
+            MotionC.class,
+
+            ImpossibleA.class,
+
             ScaffoldA.class,
             ScaffoldB.class,
             ScaffoldC.class,
@@ -50,13 +63,11 @@ public final class CheckManager {
             ClientD.class,
             ClientE.class,
 
-            FlyA.class,
             FlyB.class,
             FlyC.class,
             FlyD.class,
             FlyE.class,
             FlyF.class,
-            FlyG.class,
 
             SpeedA.class,
             SpeedB.class,
@@ -98,7 +109,7 @@ public final class CheckManager {
             ProtocolH.class,
             ProtocolI.class,
             ProtocolJ.class,
-            //ProtocolK.class,
+            ProtocolK.class,
             ProtocolL.class,
             RotationA.class,
             RotationB.class,
@@ -111,7 +122,8 @@ public final class CheckManager {
         final List<Check> checkList = new ArrayList<>();
         for (Constructor<?> constructor : CONSTRUCTORS) {
             try {
-                checkList.add((Check) constructor.newInstance(data));
+                Check check = (Check) constructor.newInstance(data);
+                checkList.add(check);
             } catch (Exception exception) {
                 System.err.println("Failed to load checks for " + data.getPlayer().getName());
                 exception.printStackTrace();
@@ -121,6 +133,7 @@ public final class CheckManager {
     }
 
     public static void setup() {
+        CONSTRUCTORS.clear();
         for (Class<?> clazz : CHECKS) {
             if (Config.ENABLED_CHECKS.contains(clazz.getSimpleName())) {
                 try {

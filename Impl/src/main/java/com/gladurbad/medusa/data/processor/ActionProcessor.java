@@ -27,7 +27,7 @@ public final class ActionProcessor {
     private boolean sprinting, sneaking, sendingAction, placing, digging, blocking,
             respawning, sendingDig, lagging;
 
-    @Setter private boolean inventory;
+    @Setter private boolean inventory,usingMedusaGui;
 
     private int heldItemSlot, lastHeldItemSlot, lastDiggingTick, lastPlaceTick, lastBreakTick,
             sprintingTicks, sneakingTicks, windowSlot;
@@ -84,6 +84,7 @@ public final class ActionProcessor {
                 inventory = false;
                 windowSlot = -1;
                 data.getVelocityProcessor().setBypassTicks(0);
+                usingMedusaGui = false;
                 break;
         }
     }

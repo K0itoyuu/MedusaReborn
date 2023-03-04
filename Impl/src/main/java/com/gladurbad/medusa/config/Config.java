@@ -2,6 +2,7 @@ package com.gladurbad.medusa.config;
 
 import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.Medusa;
+import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.manager.CheckManager;
 import org.bukkit.Bukkit;
 
@@ -31,6 +32,16 @@ public final class Config {
 
     public static void updateConfig() {
         try {
+            //Reload
+            THEMES = null;
+            ACCENT_ONE = null;
+            ACCENT_TWO = null;
+            SETBACK_COOLDOWN = 0L;
+            ALERT_FORMAT = null;
+            ALERT_COOLDOWN = 0L;
+            MIN_VL_TO_ALERT = 0;
+            CLEAR_VIOLATIONS_DELAY = 0;
+
             //Appearance
             THEMES = getKeysFromConfig("appearance.themes");
             ACCENT_ONE = getStringFromConfig("appearance.accents.accentOne");
@@ -43,9 +54,12 @@ public final class Config {
             MIN_VL_TO_ALERT = getIntegerFromConfig("violations.minimum-vl-to-alert");
             CLEAR_VIOLATIONS_DELAY = getIntegerFromConfig("violations.clear-violations-delay");
 
+            ENABLED_CHECKS.clear();
+            PUNISH_COMMANDS.clear();
+            MAX_VIOLATIONS.clear();
             //Checks
-            for (Class check : CheckManager.CHECKS) {
-                final CheckInfo checkInfo = (CheckInfo) check.getAnnotation(CheckInfo.class);
+            for (Class<?> check : CheckManager.CHECKS) {
+                final CheckInfo checkInfo = check.getAnnotation(CheckInfo.class);
                 String checkType = "";
                 if (check.getName().contains("combat")) {
                     checkType = "combat";
@@ -55,13 +69,22 @@ public final class Config {
                     checkType = "player";
                 }
 
+                /*
+                ArrayList<Object> list = new ArrayList<>();
                 for (Field field : check.getDeclaredFields()) {
-                    if (field.getType().equals(ConfigValue.class)) {
-                        boolean accessible = field.isAccessible();
-                        field.setAccessible(true);
-                        String name = ((ConfigValue) field.get(null)).getName();
-                        ConfigValue value = ((ConfigValue) field.get(null));
+                    field.setAccessible(true);
+                    try {
+                        list.add(field.get(check));
+                    } catch (IllegalArgumentException e) {
+                        //看不见
+                    }
+                }
+                for (Object o : list) {
+                    if (o instanceof ConfigValue) {
+                        ConfigValue value = (ConfigValue) o;
+                        String name = value.getName();
                         ConfigValue.ValueType type = value.getType();
+                        Medusa.INSTANCE.getPlugin().getLogger().info(name);
 
                         switch (type) {
                             case BOOLEAN:
@@ -80,9 +103,10 @@ public final class Config {
                                 value.setValue(getLongFromConfig("checks." + checkType + "." + getPathFromCheckName(checkInfo.name()) + "." + name));
                                 break;
                         }
-                        field.setAccessible(accessible);
                     }
                 }
+
+                 */
 
                 final boolean enabled = getBooleanFromConfig("checks." + checkType + "." + getPathFromCheckName(checkInfo.name()) + ".enabled");
                 final int maxViolations = getIntegerFromConfig("checks." + checkType + "." + getPathFromCheckName(checkInfo.name()) + ".max-violations");
@@ -99,10 +123,10 @@ public final class Config {
             Bukkit.getLogger().severe("Could not properly load config.");
             exception.printStackTrace();
         }
-
+        Medusa.INSTANCE.getPlugin().getLogger().info("Loaded Config.");
     }
 
-    private static boolean getBooleanFromConfig(String string) {
+    public static boolean getBooleanFromConfig(String string) {
         return Medusa.INSTANCE.getPlugin().getConfig().getBoolean(string);
     }
 
@@ -110,7 +134,7 @@ public final class Config {
         return Medusa.INSTANCE.getPlugin().getConfig().getString(string);
     }
 
-    private static int getIntegerFromConfig(String string) {
+    public static int getIntegerFromConfig(String string) {
         return Medusa.INSTANCE.getPlugin().getConfig().getInt(string);
     }
 
@@ -118,15 +142,15 @@ public final class Config {
         return Medusa.INSTANCE.getPlugin().getConfig().getDouble(string);
     }
 
-    private static List<String> getStringListFromConfig(String string) {
+    public static List<String> getStringListFromConfig(String string) {
         return Medusa.INSTANCE.getPlugin().getConfig().getStringList(string);
     }
 
-    private static Set<String> getKeysFromConfig(String string) {
+    public static Set<String> getKeysFromConfig(String string) {
         return Medusa.INSTANCE.getPlugin().getConfig().getConfigurationSection(string).getKeys(false);
     }
 
-    private static long getLongFromConfig(String string) {
+    public static long getLongFromConfig(String string) {
         return Medusa.INSTANCE.getPlugin().getConfig().getLong(string);
     }
 

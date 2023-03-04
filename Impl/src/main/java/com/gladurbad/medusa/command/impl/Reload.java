@@ -13,12 +13,11 @@ import org.bukkit.command.CommandSender;
 public class Reload extends MedusaCommand {
     @Override
     protected boolean handle(CommandSender sender, Command command, String label, String[] args) {
-        sendMessage(sender,"Reloaded Medusa.");
         Medusa.INSTANCE.getPlugin().saveDefaultConfig();
         Config.updateConfig();
-        CheckManager.setup();
-        ThemeManager.setup();
-        Medusa.INSTANCE.getPlugin().saveDefaultConfig();
+        Medusa.INSTANCE.stop(Medusa.INSTANCE.getPlugin());
+        Medusa.INSTANCE.start(Medusa.INSTANCE.getPlugin());
+        sendMessage(sender, Config.ACCENT_ONE + "Reloaded Medusa" + Config.ACCENT_ONE + ".");
         return true;
     }
 }

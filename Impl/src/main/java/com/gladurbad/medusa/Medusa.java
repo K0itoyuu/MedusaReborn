@@ -26,6 +26,8 @@ public enum Medusa {
 
     private long startTime;
 
+    private boolean firstStart = false;
+
     private final TickManager tickManager = new TickManager();
     private final ReceivingPacketProcessor receivingPacketProcessor = new ReceivingPacketProcessor();
     private final SendingPacketProcessor sendingPacketProcessor = new SendingPacketProcessor();
@@ -40,11 +42,9 @@ public enum Medusa {
         this.getPlugin().saveDefaultConfig();
         Config.updateConfig();
 
-
-
         CheckManager.setup();
         ThemeManager.setup();
-
+        this.getPlayerDataManager().getAllData().clear();
         Bukkit.getOnlinePlayers().forEach(player -> this.getPlayerDataManager().add(player));
 
         getPlugin().saveDefaultConfig();
@@ -53,15 +53,29 @@ public enum Medusa {
         tickManager.start();
 
         final Messenger messenger = Bukkit.getMessenger();
-        messenger.registerIncomingPluginChannel(plugin, "MC|Brand", new ClientBrandListener());
+        if (ListenerCenter.clientBrandListener == null)
+            ListenerCenter.clientBrandListener = new ClientBrandListener();
+        if (firstStart) {
+            messenger.registerIncomingPluginChannel(plugin, "MC|Brand", ListenerCenter.clientBrandListener);
+            firstStart = true;
+        }
 
         startTime = System.currentTimeMillis();
 
-        Bukkit.getServer().getPluginManager().registerEvents(new BukkitEventListener(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new ClientBrandListener(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new JoinQuitListener(), plugin);
+        if (ListenerCenter.bukkitEventListener == null)
+            ListenerCenter.bukkitEventListener = new BukkitEventListener();
 
-        PacketEvents.get().registerListener(new NetworkListener());
+        if (ListenerCenter.joinQuitListener == null)
+            ListenerCenter.joinQuitListener = new JoinQuitListener();
+
+        if (ListenerCenter.networkListener == null)
+            ListenerCenter.networkListener = new NetworkListener();
+
+        Bukkit.getServer().getPluginManager().registerEvents(ListenerCenter.bukkitEventListener, plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(ListenerCenter.clientBrandListener, plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(ListenerCenter.joinQuitListener, plugin);
+
+        PacketEvents.get().registerListener(ListenerCenter.networkListener);
     }
 
     public void stop(final MedusaPlugin plugin) {

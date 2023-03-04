@@ -8,10 +8,7 @@ public final class MedusaPlugin extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        PacketEvents.create(this).getSettings()
-                .checkForUpdates(true)
-                .backupServerVersion(ServerVersion.v_1_8_8);
-
+        PacketEvents.create(this).getSettings().backupServerVersion(ServerVersion.v_1_8_8);
         PacketEvents.get().load();
     }
 

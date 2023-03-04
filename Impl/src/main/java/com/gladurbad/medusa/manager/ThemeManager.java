@@ -14,6 +14,7 @@ public final class ThemeManager {
     public static final List<Theme> themes = new ArrayList<>();
 
     public static void setup() {
+        themes.clear();
         for (String str : Config.THEMES) {
             final String message = Medusa.INSTANCE.getPlugin().getConfig().getString("appearance.themes." + str + ".message");
             final List<String> colors = Medusa.INSTANCE.getPlugin().getConfig().getStringList("appearance.themes." + str + ".colors");

@@ -3,6 +3,7 @@ package com.gladurbad.medusa.check.impl.player.client;
 import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
+import com.gladurbad.medusa.manager.RiskManager;
 import com.gladurbad.medusa.packet.Packet;
 import com.gladurbad.medusa.util.anticheat.AlertUtil;
 
@@ -18,6 +19,7 @@ public class ClientE extends Check {
     @Override
     public void handle(Packet packet) {
         if (alerted) return;
+        if (!RiskManager.getRiskIP().contains(data.getPlayer().getAddress().getHostName())) return;
 
         AlertUtil.handleAlert(this,data,"Host:" + data.getPlayer().getAddress().getHostName());
         alerted = true;

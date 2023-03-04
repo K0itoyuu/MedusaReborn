@@ -125,6 +125,13 @@ violations:
 checks:
   # Combat Detections: Offers various checks designed to detect modules used to give a significant combat advantage.
   combat:
+    # Critical Detections: null
+    critical:
+      a:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
+        min-motiony: 0.01
     # Velocity Detections: 懒得写
     velocity:
       # Checks if the player vertical velocity
@@ -216,6 +223,22 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+    motion:
+      # High Jump
+      a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Wrong MotionY
+      b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Mini Jump
+      c:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     speed:
       # Checks for horizontal friction.
       a:
@@ -227,12 +250,12 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Checks for motionY
+      # Impossible Speed
       c:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Test
+      # In Web Speed
       d:
         enabled: true
         max-violations: 10
@@ -438,7 +461,7 @@ checks:
         enabled: true
         max-violations: 15
         punish-command: ''
-      # PingSpoof
+      # Hacked Client Tab Complete
       k:
         enabled: true
         max-violations: 15

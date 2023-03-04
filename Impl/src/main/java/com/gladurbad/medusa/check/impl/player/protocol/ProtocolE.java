@@ -11,7 +11,7 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.helditemslot.Wrap
  */
 
 
-@CheckInfo(name = "Protocol (E)", description = "Checks for flaws in scaffold/auto-tool hacks.")
+@CheckInfo(name = "Protocol (E)", description = "HeldItem Spoof")
 public final class ProtocolE extends Check {
 
     private int lastSlot = -1;

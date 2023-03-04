@@ -38,7 +38,6 @@ public class RotationB extends Check {
             if (!validInteraction) {
                 assert direction != null;
                 fail("face=" + direction.getFaceValue());
-                data.getPlayer().getWorld().getBlockAt(blockLocation).setType(Material.AIR);
             }
         }
     }

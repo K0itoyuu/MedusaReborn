@@ -19,9 +19,10 @@ public class VelocityA extends Check {
                 if (data.getVelocityProcessor().getBypassTicks() > 20) {
                     double dy = Math.abs(data.getPositionProcessor().getDeltaY());
                     debug("dy:" + dy);
-                    boolean invalid = dy <= 0.0105 && !isExempt(ExemptType.FLYING);
+                    boolean invalid = dy <= 0.0105 && !isExempt(ExemptType.FLYING) && !data.getPositionProcessor().isInWeb();
                     if (invalid) {
                         buffer += 1.0;
+                        setBack();
                     } else {
                         buffer = Math.max(0, buffer - 0.25);
                     }

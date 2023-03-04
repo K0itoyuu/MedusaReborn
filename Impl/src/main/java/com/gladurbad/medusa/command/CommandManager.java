@@ -22,6 +22,7 @@ public final class CommandManager implements CommandExecutor {
         commands.add(new Debug());
         commands.add(new Violations());
         commands.add(new Theme());
+        commands.add(new Reload());
     }
 
     @Override

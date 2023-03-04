@@ -4,6 +4,7 @@ import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.api.check.MedusaCheck;
 import com.gladurbad.api.listener.MedusaFlagEvent;
 import com.gladurbad.medusa.config.Config;
+import com.gladurbad.medusa.config.ConfigValue;
 import com.gladurbad.medusa.manager.RiskManager;
 import com.gladurbad.medusa.util.PlayerUtil;
 import com.gladurbad.medusa.util.anticheat.PunishUtil;
@@ -18,9 +19,17 @@ import lombok.Setter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import static com.gladurbad.medusa.config.Config.*;
+import static com.gladurbad.medusa.config.Config.getPathFromCheckName;
+import static com.gladurbad.medusa.config.ConfigValue.ValueType.*;
 
 @Getter
 @Setter
@@ -60,6 +69,10 @@ public abstract class Check implements MedusaCheck {
     }
 
     public abstract void handle(final Packet packet);
+
+    public void setBack() {
+        data.getPlayer().teleport(data.getPlayer());
+    }
 
     public void fail(final Object info) {
         final MedusaFlagEvent event = new MedusaFlagEvent(data.getPlayer(), this);
@@ -112,6 +125,23 @@ public abstract class Check implements MedusaCheck {
         return System.currentTimeMillis();
     }
 
+    public List<ConfigValue> getSettings() {
+        List<Object> objects = new ArrayList<>();
+        for (Field field : this.getClass().getDeclaredFields()) {
+            try {
+                field.setAccessible(true);
+                objects.add(field);
+            } catch (Exception e) {}
+        }
+        List<ConfigValue> configValues = new ArrayList<>();
+        for (Object o : objects) {
+            if (o instanceof ConfigValue) {
+                configValues.add((ConfigValue) o);
+            }
+        }
+        return configValues;
+    }
+
     public CheckInfo getCheckInfo() {
         if (this.getClass().isAnnotationPresent(CheckInfo.class)) {
             return this.getClass().getAnnotation(CheckInfo.class);
@@ -119,6 +149,10 @@ public abstract class Check implements MedusaCheck {
             System.err.println("CheckInfo annotation hasn't been added to the class " + this.getClass().getSimpleName() + ".");
         }
         return null;
+    }
+
+    public CheckType getCheckType() {
+        return checkType;
     }
 
     public void debug(final Object... objects) {

@@ -6,6 +6,7 @@ import com.gladurbad.medusa.data.processor.PositionProcessor;
 import com.gladurbad.medusa.util.type.Pair;
 import com.google.common.collect.Lists;
 import lombok.experimental.UtilityClass;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
@@ -48,6 +49,15 @@ public final class MathUtil {
         double distance = player.getLocation().distance(target.getLocation());
         return distance - 0.3;
     }
+
+    public double getDistance(Location a,Location b,boolean mathPosY) {
+        if (!mathPosY) {
+            a.setY(0);
+            b.setY(0);
+        }
+        return a.distance(b);
+    }
+
     public boolean isScientificNotation(final Number num) {
         return (num.toString().contains("E"));
     }

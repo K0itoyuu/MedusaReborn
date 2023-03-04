@@ -40,6 +40,18 @@ public final class PlayerUtil {
         return 0.42 + effectSpeed;
     }
 
+    public double maxSpeed(Player player) {
+        double d = 0.75;
+        double e = 0.5D * getPotionLevel(player,PotionEffectType.JUMP);
+        return d + e;
+    }
+
+    public double maxGroundSpeed(Player player) {
+        double d = 0.3;
+        double e = 0.16D * getPotionLevel(player,PotionEffectType.JUMP);
+        return d + e;
+    }
+
     public ClientVersion getClientVersion(final Player player) {
         return PacketEvents.get().getPlayerUtils().getClientVersion(player);
     }

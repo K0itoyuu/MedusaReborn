@@ -55,6 +55,14 @@ public final class Packet {
         return isReceiving() && (packetId == PacketType.Play.Client.POSITION || packetId == PacketType.Play.Client.POSITION_LOOK);
     }
 
+    public boolean isTabComplete() {
+        return isReceiving() && packetId == PacketType.Play.Client.TAB_COMPLETE;
+    }
+
+    public boolean isOutWindowClick() {
+        return isSending() && packetId == PacketType.Play.Server.WINDOW_ITEMS;
+    }
+
     public boolean isArmAnimation() {
         return isReceiving() && packetId == PacketType.Play.Client.ARM_ANIMATION;
     }
