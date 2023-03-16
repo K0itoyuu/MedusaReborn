@@ -33,12 +33,12 @@ public class ClientC extends Check {
                 final double speed = 50 / average;
 
                 if (speed >= 1.05) {
-                    if (++buffer > 30) {
+                    if (++buffer > 15) {
                         fail(String.format("speed=%.4f, delta=%o, buffer=%.2f", speed, delta, buffer));
                         buffer = 0;
                     }
                 } else {
-                    buffer = Math.max(0, buffer - 1);
+                    buffer = Math.max(0, buffer - 0.25);
                 }
             }
 

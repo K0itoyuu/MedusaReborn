@@ -26,10 +26,12 @@ public class SpeedD extends Check {
                 double maxMotionXZ = PlayerUtil.maxSpeed(data.getPlayer()) * 0.2D;
                 if (motionY > maxMotionY) {
                     fail("YDiff:" + (motionY - maxMotionY));
+                    setBack();
                 }
 
                 if (motionXZ > maxMotionXZ) {
                     fail("XZDiff:" + (motionXZ - maxMotionXZ));
+                    setBack();
                 }
             }
         }

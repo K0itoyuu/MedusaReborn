@@ -131,7 +131,6 @@ checks:
         enabled: true
         max-violations: 5
         punish-command: ''
-        min-motiony: 0.01
     # Velocity Detections: 懒得写
     velocity:
       # Checks if the player vertical velocity
@@ -205,6 +204,11 @@ checks:
         enabled: true
         max-violations: 5
         punish-command: ''
+      # Checks for AutoBlock (Interact)
+      c:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
   # Movement Detections: Offers various checks designed to detect blatant movement advantages.
   movement:
     jesus:
@@ -231,11 +235,6 @@ checks:
         punish-command: ''
       # Wrong MotionY
       b:
-        enabled: true
-        max-violations: 10
-        punish-command: ''
-      # Mini Jump
-      c:
         enabled: true
         max-violations: 10
         punish-command: ''
@@ -340,6 +339,11 @@ checks:
         punish-command: ''
       # Scaffold
       c:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Test
+      d:
         enabled: true
         max-violations: 10
         punish-command: ''

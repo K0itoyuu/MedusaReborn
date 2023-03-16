@@ -7,11 +7,14 @@ import com.gladurbad.medusa.exempt.type.ExemptType;
 import com.gladurbad.medusa.packet.Packet;
 import io.github.retrooper.packetevents.packetwrappers.play.in.blockplace.WrappedPacketInBlockPlace;
 import io.github.retrooper.packetevents.utils.player.Direction;
+import io.github.retrooper.packetevents.utils.vector.Vector3i;
 
 @CheckInfo(name = "Scaffold (C)",description = "Place block delay")
 public class ScaffoldC extends Check {
 
     private int movement,lastMovement,lastY;
+
+    private Vector3i blockPos;
 
     public ScaffoldC(PlayerData data) {
         super(data);
@@ -23,7 +26,9 @@ public class ScaffoldC extends Check {
             boolean isExempt = isExempt(ExemptType.FLYING);
             if (isExempt) return;
             WrappedPacketInBlockPlace blockPlace = new WrappedPacketInBlockPlace(packet.getRawPacket());
-
+            if (blockPlace.getBlockPosition().equals(blockPos)) {
+                return;
+            }
             if (data.getPlayer().getItemInHand().getType().isBlock() && !blockPlace.getDirection().equals(Direction.OTHER)) {
                 if (lastY == blockPlace.getBlockPosition().getY()) {
                     if (movement == lastMovement) {
@@ -39,7 +44,7 @@ public class ScaffoldC extends Check {
                 lastMovement = movement;
                 movement = 0;
             }
-
+            blockPos = blockPlace.getBlockPosition();
             lastY = blockPlace.getBlockPosition().getY();
         }
 

@@ -14,6 +14,8 @@ public class ClientA extends Check {
 
     @Override
     public void handle(Packet packet) {
+        if (data.getJoinTime() < 6000L) return;
+
         if (packet.isFlying()) {
             buffer += 1.0;
         } else if (packet.isIncomingTransaction()) {

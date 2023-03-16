@@ -1,20 +1,14 @@
 package com.gladurbad.medusa.manager;
 
 import com.gladurbad.medusa.check.Check;
-import com.gladurbad.medusa.check.impl.combat.autoblock.AutoBlockA;
-import com.gladurbad.medusa.check.impl.combat.autoblock.AutoBlockB;
+import com.gladurbad.medusa.check.impl.combat.autoblock.*;
 import com.gladurbad.medusa.check.impl.combat.critical.CriticalA;
 import com.gladurbad.medusa.check.impl.combat.killaura.KillAuraF;
 import com.gladurbad.medusa.check.impl.combat.killaura.*;
-import com.gladurbad.medusa.check.impl.combat.velocity.VelocityA;
-import com.gladurbad.medusa.check.impl.combat.velocity.VelocityB;
+import com.gladurbad.medusa.check.impl.combat.velocity.*;
 import com.gladurbad.medusa.check.impl.movement.fly.*;
-import com.gladurbad.medusa.check.impl.movement.jesus.JesusA;
-import com.gladurbad.medusa.check.impl.movement.jesus.JesusB;
-import com.gladurbad.medusa.check.impl.movement.jesus.JesusC;
-import com.gladurbad.medusa.check.impl.movement.motion.MotionA;
-import com.gladurbad.medusa.check.impl.movement.motion.MotionB;
-import com.gladurbad.medusa.check.impl.movement.motion.MotionC;
+import com.gladurbad.medusa.check.impl.movement.jesus.*;
+import com.gladurbad.medusa.check.impl.movement.motion.*;
 import com.gladurbad.medusa.check.impl.movement.noslow.*;
 import com.gladurbad.medusa.check.impl.movement.sprint.*;
 import com.gladurbad.medusa.check.impl.movement.speed.*;
@@ -29,6 +23,7 @@ import com.gladurbad.medusa.check.impl.player.rotation.RotationC;
 import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldA;
 import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldB;
 import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldC;
+import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldD;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
 
@@ -43,13 +38,13 @@ public final class CheckManager {
 
             MotionA.class,
             MotionB.class,
-            MotionC.class,
 
             ImpossibleA.class,
 
             ScaffoldA.class,
             ScaffoldB.class,
             ScaffoldC.class,
+            ScaffoldD.class,
 
             VelocityA.class,
             VelocityB.class,
@@ -84,6 +79,7 @@ public final class CheckManager {
 
             AutoBlockA.class,
             AutoBlockB.class,
+            AutoBlockC.class,
 
             KillAuraA.class,
             KillAuraB.class,

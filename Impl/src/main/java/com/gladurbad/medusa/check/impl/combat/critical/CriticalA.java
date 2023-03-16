@@ -28,9 +28,8 @@ public class CriticalA extends Check {
             if (useEntity.getAction().equals(WrappedPacketInUseEntity.EntityUseAction.ATTACK)) {
                 double motionY = Math.abs(data.getPositionProcessor().getLastDeltaY());
                 debug("motionY:" + motionY);
-                if (motionY > 0 && motionY < 5E-2) {
+                if (motionY > 0 && motionY < 3E-2) {
                     buffer ++;
-                    setBack();
                 }
 
                 if (buffer >= 3) {
