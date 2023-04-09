@@ -3,7 +3,6 @@ package com.gladurbad.medusa.check.impl.movement.groundspoof;
 import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
-import com.gladurbad.medusa.exempt.type.ExemptType;
 import com.gladurbad.medusa.packet.Packet;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
 
@@ -25,7 +24,7 @@ public class GroundSpoofB extends Check {
                     if (data.getPositionProcessor().getDeltaY() < 0) {
                         buffer++;
                     } else {
-                        buffer -= 0.05;
+                        buffer = Math.max(0,buffer - 0.05);
                     }
                 }
             }
