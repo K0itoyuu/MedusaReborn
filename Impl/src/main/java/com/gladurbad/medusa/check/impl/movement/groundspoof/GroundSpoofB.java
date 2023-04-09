@@ -16,17 +16,22 @@ public class GroundSpoofB extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (packet.isPosition()) {
+        if (packet.isFlying()) {
+            WrappedPacketInFlying wrapper = new WrappedPacketInFlying(packet.getRawPacket());
+
             if (data.getPositionProcessor().getFallDistance() > 3.0) {
-                WrappedPacketInFlying wrapper = new WrappedPacketInFlying(packet.getRawPacket());
-                boolean invalid = wrapper.isOnGround() && !isExempt(ExemptType.TELEPORT) && data.getJoinTime() > 5000 && data.getPositionProcessor().getDeltaY() < 0;
-                if (invalid) {
-                    buffer += 1;
+                if (wrapper.isOnGround()) {
+                    debug("dy:" + data.getPositionProcessor().getDeltaY());
+                    if (data.getPositionProcessor().getDeltaY() < 0) {
+                        buffer++;
+                    } else {
+                        buffer -= 0.05;
+                    }
                 }
             }
 
-            if (buffer >= 2) {
-                fail("motionY:" + data.getPositionProcessor().getLastDeltaY());
+            if (buffer >= 3) {
+                fail("delayY: " + data.getPositionProcessor().getDeltaY());
                 buffer = 0;
             }
         }
