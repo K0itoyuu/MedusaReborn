@@ -19,14 +19,6 @@ public final class Packet {
         this.packetId = packetId;
     }
 
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = false;
-    }
-
-    public boolean isCancelled() {
-        return this.cancelled;
-    }
-
     public boolean isReceiving() {
         return direction == Direction.RECEIVE;
     }

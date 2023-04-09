@@ -1,29 +1,26 @@
 package com.gladurbad.medusa.manager;
 
 import com.gladurbad.medusa.check.Check;
+import com.gladurbad.medusa.check.impl.combat.aim.AimA;
+import com.gladurbad.medusa.check.impl.combat.aim.AimB;
 import com.gladurbad.medusa.check.impl.combat.autoblock.*;
-import com.gladurbad.medusa.check.impl.combat.critical.CriticalA;
-import com.gladurbad.medusa.check.impl.combat.killaura.KillAuraF;
+import com.gladurbad.medusa.check.impl.combat.critical.*;
 import com.gladurbad.medusa.check.impl.combat.killaura.*;
 import com.gladurbad.medusa.check.impl.combat.velocity.*;
 import com.gladurbad.medusa.check.impl.movement.fly.*;
+import com.gladurbad.medusa.check.impl.movement.groundspoof.GroundSpoofA;
+import com.gladurbad.medusa.check.impl.movement.groundspoof.GroundSpoofB;
 import com.gladurbad.medusa.check.impl.movement.jesus.*;
 import com.gladurbad.medusa.check.impl.movement.motion.*;
 import com.gladurbad.medusa.check.impl.movement.noslow.*;
 import com.gladurbad.medusa.check.impl.movement.sprint.*;
 import com.gladurbad.medusa.check.impl.movement.speed.*;
 import com.gladurbad.medusa.check.impl.player.client.*;
-import com.gladurbad.medusa.check.impl.player.impossible.ImpossibleA;
-import com.gladurbad.medusa.check.impl.movement.speed.SpeedD;
+import com.gladurbad.medusa.check.impl.player.impossible.*;
 import com.gladurbad.medusa.check.impl.player.inventory.*;
 import com.gladurbad.medusa.check.impl.player.protocol.*;
-import com.gladurbad.medusa.check.impl.player.rotation.RotationA;
-import com.gladurbad.medusa.check.impl.player.rotation.RotationB;
-import com.gladurbad.medusa.check.impl.player.rotation.RotationC;
-import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldA;
-import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldB;
-import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldC;
-import com.gladurbad.medusa.check.impl.player.scaffold.ScaffoldD;
+import com.gladurbad.medusa.check.impl.player.rotation.*;
+import com.gladurbad.medusa.check.impl.player.scaffold.*;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
 
@@ -34,6 +31,12 @@ import java.util.List;
 public final class CheckManager {
 
     public static final Class<?>[] CHECKS = new Class[] {
+            AimA.class,
+            AimB.class,
+
+            GroundSpoofA.class,
+            GroundSpoofB.class,
+
             CriticalA.class,
 
             MotionA.class,
@@ -57,12 +60,11 @@ public final class CheckManager {
             ClientC.class,
             ClientD.class,
             ClientE.class,
+            ClientF.class,
 
+            FlyA.class,
             FlyB.class,
             FlyC.class,
-            FlyD.class,
-            FlyE.class,
-            FlyF.class,
 
             SpeedA.class,
             SpeedB.class,

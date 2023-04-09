@@ -34,7 +34,7 @@ public final class SendingPacketProcessor  {
         if (!data.getPlayer().hasPermission("medusa.bypass") || data.getPlayer().isOp()) {
             data.getChecks().forEach(check -> check.handle(packet));
         }
-        if (msTimer.hasTimePassed(50L)) {
+        if (msTimer.hasTimePassed(200L)) {
             final WrappedPacketOutTransaction wrapped = new WrappedPacketOutTransaction(0, (short) new Random().nextInt(32767),false);
             data.getTransactionProcessor().handleTransactionSend(wrapped);
             msTimer.reset();

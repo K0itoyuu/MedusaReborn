@@ -3,12 +3,9 @@ package com.gladurbad.medusa.check.impl.movement.fly;
 import com.gladurbad.api.check.CheckInfo;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
-import com.gladurbad.medusa.exempt.type.ExemptType;
 import com.gladurbad.medusa.packet.Packet;
-import com.gladurbad.medusa.util.PlayerUtil;
-import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
 
-@CheckInfo(name = "Fly (B)",description = "GroundSpoof")
+@CheckInfo(name = "Fly (D)",description = "FakeGround")
 public class FlyB extends Check {
 
     public FlyB(PlayerData data) {
@@ -17,17 +14,13 @@ public class FlyB extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (packet.isPosition() || packet.isPosLook() && data.getTransactionProcessor().getServerTransactionPing() < 200 && data.getJoinTime() > 5000 && !data.getPositionProcessor().isTeleporting() && !data.getActionProcessor().isRespawning() && data.getPositionProcessor().getAirTicks() > 5) {
-            if (data.getJoinTime() < 10000) return;
-            WrappedPacketInFlying wrapped = new WrappedPacketInFlying(packet.getRawPacket());
-            boolean packetOnGround = wrapped.isOnGround();
-            boolean positionOnGround = PlayerUtil.isOnGround(data);
-            boolean invalid = (packetOnGround != positionOnGround) && !isExempt(ExemptType.TELEPORT);
-            if (invalid) {
-                buffer += 1;
+        if (data.getPositionProcessor().isInAir() && packet.isPosition()) {
+            if (data.getPositionProcessor().getAirTicks() > 13 && data.getPositionProcessor().isMathematicallyOnGround()) {
+                buffer += 1.0;
             }
-            if (buffer >= 2) {
-                fail("PacketOnGround: " + packetOnGround + ", PositionOnGround: " + positionOnGround);
+
+            if (buffer >= 5) {
+                fail("at: " + data.getPositionProcessor().getAirTicks());
                 buffer = 0;
             }
         }

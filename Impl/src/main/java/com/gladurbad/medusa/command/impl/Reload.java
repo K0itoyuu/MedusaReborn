@@ -4,6 +4,7 @@ import com.gladurbad.medusa.Medusa;
 import com.gladurbad.medusa.command.CommandInfo;
 import com.gladurbad.medusa.command.MedusaCommand;
 import com.gladurbad.medusa.config.Config;
+import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.manager.CheckManager;
 import com.gladurbad.medusa.manager.ThemeManager;
 import org.bukkit.command.Command;
@@ -17,6 +18,10 @@ public class Reload extends MedusaCommand {
         Config.updateConfig();
         Medusa.INSTANCE.stop(Medusa.INSTANCE.getPlugin());
         Medusa.INSTANCE.start(Medusa.INSTANCE.getPlugin());
+        for (PlayerData data : Medusa.INSTANCE.getPlayerDataManager().getAllData()) {
+            data.getChecks().clear();
+            data.setChecks(CheckManager.loadChecks(data));
+        }
         sendMessage(sender, Config.ACCENT_ONE + "Reloaded Medusa" + Config.ACCENT_ONE + ".");
         return true;
     }

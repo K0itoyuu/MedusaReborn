@@ -125,6 +125,15 @@ violations:
 checks:
   # Combat Detections: Offers various checks designed to detect modules used to give a significant combat advantage.
   combat:
+    aim:
+      a:
+        enabled: true
+        max-violations: 15
+        punish-command: ''
+      b:
+        enabled: true
+        max-violations: 15
+        punish-command: ''
     # Critical Detections: null
     critical:
       a:
@@ -211,6 +220,15 @@ checks:
         punish-command: ''
   # Movement Detections: Offers various checks designed to detect blatant movement advantages.
   movement:
+    groundspoof:
+      a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     jesus:
       # Checks for walk on liquid
       a:
@@ -288,38 +306,23 @@ checks:
         max-violations: 10
         punish-command: ''
     fly:
-      # Checks if the player is 0MotionY flight (Impossible)
+      # Checks for constant vertical movement.
       a:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Checks if the player spoof ground
+      # Patch some bypass
       b:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Checks for constant vertical movement.
+      # FakeBlock or GhostBlock
       c:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Patch some bypass
-      d:
-        enabled: true
-        max-violations: 10
-        punish-command: ''
-      # ground spoof 2
-      e:
-        enabled: true
-        max-violations: 10
-        punish-command: ''
-      # FakeBlock or GhostBlock
-      f:
-        enabled: true
-        max-violations: 10
-        punish-command: ''
       # airjump
-      g:
+      d:
         enabled: true
         max-violations: 10
         punish-command: ''

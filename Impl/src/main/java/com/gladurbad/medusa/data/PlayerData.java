@@ -25,7 +25,7 @@ public final class PlayerData {
     private String clientBrand;
     private int totalViolations, combatViolations, movementViolations, playerViolations;
     private final long joinTime = System.currentTimeMillis();
-    private final List<Check> checks = CheckManager.loadChecks(this);
+    private List<Check> checks = CheckManager.loadChecks(this);
     private final EvictingList<Pair<Location, Integer>> targetLocations = new EvictingList<>(40);
 
     private final ExemptProcessor exemptProcessor = new ExemptProcessor(this);
