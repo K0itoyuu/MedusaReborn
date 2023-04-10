@@ -41,8 +41,10 @@ public final class CheckManager {
 
             MotionA.class,
             MotionB.class,
+            MotionC.class,
 
             ImpossibleA.class,
+            ImpossibleB.class,
 
             ScaffoldA.class,
             ScaffoldB.class,

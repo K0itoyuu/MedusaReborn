@@ -256,6 +256,11 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+      # Mini Jump
+      c:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     speed:
       # Checks for horizontal friction.
       a:
@@ -328,6 +333,18 @@ checks:
         punish-command: ''
   # Player Detections: Offers various checks to detect miscellaneous cheats not covered by the other categories.
   player:
+    # Inventory Detections: Checks for various cheats related to inventory (InventoryWalk, ChestSteal)
+    impossible:
+      # Checks if the player interact self
+      a:
+        enabled: true
+        max-violations: 0
+        punish-command: ''
+      # Checks helditem spoof disabler
+      b:
+        enabled: true
+        max-violations: 0
+        punish-command: ''
     # Scaffold Detections: Checks for scaffold cheats
     scaffold:
       # Invalid Direction
