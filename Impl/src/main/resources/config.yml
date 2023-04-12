@@ -406,11 +406,6 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # IP Risk
-      e:
-        enabled: true
-        max-violations: 114514
-        punish-command: ''
     # Inventory Detections: Checks for various cheats related to inventory (InventoryWalk, ChestSteal)
     inventory:
       # Checks if the player is moving while in their inventory.

@@ -20,7 +20,7 @@ public class SprintA extends Check {
                 data.getPlayer().setSprinting(false);
             }
 
-            if (buffer >= 1.0) {
+            if (buffer >= 3.0) {
                 fail("FoodLevel: " + data.getPlayer().getFoodLevel());
                 buffer = 0;
             }

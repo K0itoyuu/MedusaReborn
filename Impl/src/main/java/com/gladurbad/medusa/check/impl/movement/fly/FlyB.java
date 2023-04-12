@@ -5,7 +5,7 @@ import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
 
-@CheckInfo(name = "Fly (D)",description = "FakeGround")
+@CheckInfo(name = "Fly (B)",description = "FakeGround")
 public class FlyB extends Check {
 
     public FlyB(PlayerData data) {

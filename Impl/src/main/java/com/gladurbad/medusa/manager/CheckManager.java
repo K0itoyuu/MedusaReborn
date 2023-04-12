@@ -61,8 +61,6 @@ public final class CheckManager {
             ClientB.class,
             ClientC.class,
             ClientD.class,
-            ClientE.class,
-            ClientF.class,
 
             FlyA.class,
             FlyB.class,

@@ -14,13 +14,14 @@ public class MotionC extends Check {
 
     @Override
     public void handle(Packet packet) {
+        if (data.getJoinTime() < 4000L) return;
+
         if (packet.isFlying()) {
-            if (Math.abs(data.getPositionProcessor().getLastDeltaY()) > 0 && Math.abs(data.getPositionProcessor().getLastDeltaY()) < 3E-2) {
+            if (Math.abs(data.getPositionProcessor().getDeltaY()) > 0 && Math.abs(data.getPositionProcessor().getDeltaY()) < 3E-2) {
                 buffer ++;
             }
             if (buffer >= 3) {
-                setBack();
-                fail("motionY: " + Math.abs(data.getPositionProcessor().getLastDeltaY()));
+                fail("motionY: " + Math.abs(data.getPositionProcessor().getDeltaY()));
                 buffer = 0;
             }
         }

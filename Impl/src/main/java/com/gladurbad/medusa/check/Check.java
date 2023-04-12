@@ -5,8 +5,6 @@ import com.gladurbad.api.check.MedusaCheck;
 import com.gladurbad.api.listener.MedusaFlagEvent;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.config.ConfigValue;
-import com.gladurbad.medusa.manager.RiskManager;
-import com.gladurbad.medusa.util.PlayerUtil;
 import com.gladurbad.medusa.util.anticheat.PunishUtil;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.exempt.type.ExemptType;
@@ -19,17 +17,12 @@ import lombok.Setter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static com.gladurbad.medusa.config.Config.*;
-import static com.gladurbad.medusa.config.Config.getPathFromCheckName;
-import static com.gladurbad.medusa.config.ConfigValue.ValueType.*;
 
 @Getter
 @Setter
@@ -99,7 +92,6 @@ public abstract class Check implements MedusaCheck {
         }
 
         if (vl > maxVl) {
-            RiskManager.getRiskIP().add(data.getPlayer().getAddress().getHostName());
             PunishUtil.punish(this, data);
             vl = 0;
             data.setCombatViolations(0);

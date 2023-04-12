@@ -6,7 +6,7 @@ import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.exempt.type.ExemptType;
 import com.gladurbad.medusa.packet.Packet;
 
-@CheckInfo(name = "Fly (C)",description = "Checks for constant vertical movement.")
+@CheckInfo(name = "Fly (A)",description = "Checks for constant vertical movement.")
 public class FlyA extends Check {
 
     public FlyA(PlayerData data) {

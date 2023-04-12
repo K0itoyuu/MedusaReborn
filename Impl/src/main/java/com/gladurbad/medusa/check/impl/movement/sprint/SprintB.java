@@ -20,7 +20,7 @@ public class SprintB extends Check {
                 buffer += 0.1;
                 data.getPlayer().setSprinting(false);
             }
-            if (buffer >= 1.0) {
+            if (buffer >= 3.0) {
                 fail();
                 buffer = 0;
             }

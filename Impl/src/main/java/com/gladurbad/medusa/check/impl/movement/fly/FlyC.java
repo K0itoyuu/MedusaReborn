@@ -9,7 +9,7 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPac
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
-@CheckInfo(name = "Fly (F)",description = "GhostBlock / FakeBlock")
+@CheckInfo(name = "Fly (C)",description = "GhostBlock / FakeBlock")
 public class FlyC extends Check {
     public FlyC(PlayerData data) {
         super(data);

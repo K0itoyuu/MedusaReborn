@@ -15,7 +15,7 @@ public class NoSlowB extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (data.getPlayer().isBlocking() && data.getActionProcessor().isBlocking()) {
+        if (data.getPlayer().isBlocking() || data.getActionProcessor().isBlocking()) {
             boolean invalid = data.getActionProcessor().getSprintingTicks() > 8 && data.getPositionProcessor().getFastBlockTicks() > 8;
             if (invalid) {
                 buffer += 1;

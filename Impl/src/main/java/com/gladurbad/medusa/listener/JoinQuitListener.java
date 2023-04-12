@@ -1,14 +1,7 @@
 package com.gladurbad.medusa.listener;
 
 import com.gladurbad.medusa.Medusa;
-import com.gladurbad.medusa.manager.RiskManager;
 import com.gladurbad.medusa.util.anticheat.AlertUtil;
-import io.github.retrooper.packetevents.event.PacketListener;
-import io.github.retrooper.packetevents.event.PacketListenerDynamic;
-import io.github.retrooper.packetevents.event.annotation.PacketHandler;
-import io.github.retrooper.packetevents.event.impl.PlayerEjectEvent;
-import io.github.retrooper.packetevents.event.impl.PlayerInjectEvent;
-import io.github.retrooper.packetevents.event.impl.PostPlayerInjectEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
