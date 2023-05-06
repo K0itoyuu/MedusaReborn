@@ -4,6 +4,7 @@ import com.gladurbad.medusa.Medusa;
 import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.config.Config;
 import com.gladurbad.medusa.data.PlayerData;
+import com.gladurbad.medusa.util.ColorUtil;
 import com.gladurbad.medusa.util.RandomUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
@@ -24,6 +25,6 @@ public final class PunishUtil {
 
     private String getRandomACName() {
         String[] strings = Config.getStringListFromConfig("appearance.random_anticheat_names").toArray(new String[0]);
-        return strings[RandomUtils.nextInt(0,strings.length-1)];
+        return ColorUtil.translate(strings[RandomUtils.nextInt(0,strings.length-1)]);
     }
 }
