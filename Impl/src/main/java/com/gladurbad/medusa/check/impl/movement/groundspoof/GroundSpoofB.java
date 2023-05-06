@@ -15,7 +15,7 @@ public class GroundSpoofB extends Check {
 
     @Override
     public void handle(Packet packet) {
-        if (packet.isFlying()) {
+        if (packet.isFlying() && !data.getPositionProcessor().isMathematicallyOnGround()) {
             WrappedPacketInFlying wrapper = new WrappedPacketInFlying(packet.getRawPacket());
 
             if (data.getPositionProcessor().getFallDistance() > 3.0) {
@@ -24,7 +24,7 @@ public class GroundSpoofB extends Check {
                     if (data.getPositionProcessor().getDeltaY() < 0) {
                         buffer++;
                     } else {
-                        buffer = Math.max(0,buffer - 0.05);
+                        buffer = Math.max(0,buffer - 0.25);
                     }
                 }
             }
