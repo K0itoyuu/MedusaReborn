@@ -96,6 +96,9 @@ appearance:
     accentOne: '&a'
     accentTwo: '&2'
 
+  # Random anticheat names
+  # Usage: %random_ac%
+  random_anticheat_names: ["&b&lLvZiQiaoAC","&cVulcan","&bGrimAC","&eSparky","&6AAC","&aMedusa","&5Reflex","&6GodsEye","&2Spartan","&bKarhu","&cOverFlow"]
 # Violation configuration section.
 # Placeholders:
 # %player% - Player's name

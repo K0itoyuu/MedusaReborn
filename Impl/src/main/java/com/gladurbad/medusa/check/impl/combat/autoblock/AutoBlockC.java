@@ -5,6 +5,7 @@ import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.packet.Packet;
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
+import org.bukkit.ChatColor;
 
 @CheckInfo(name = "AutoBlock (C)",description = "Interact AutoBlock",experimental = true)
 public class AutoBlockC extends Check {
