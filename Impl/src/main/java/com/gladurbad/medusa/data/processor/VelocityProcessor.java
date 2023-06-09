@@ -1,69 +1,63 @@
 package com.gladurbad.medusa.data.processor;
 
-import io.github.retrooper.packetevents.PacketEvents;
-import io.github.retrooper.packetevents.packetwrappers.play.in.transaction.WrappedPacketInTransaction;
+
+import com.gladurbad.medusa.data.PlayerData;
+import com.gladurbad.medusa.util.PacketUtil;
+import io.github.retrooper.packetevents.packetwrappers.play.out.entityvelocity.WrappedPacketOutEntityVelocity;
+import io.github.retrooper.packetevents.packetwrappers.play.out.explosion.WrappedPacketOutExplosion;
 import io.github.retrooper.packetevents.packetwrappers.play.out.transaction.WrappedPacketOutTransaction;
 import lombok.Getter;
-import com.gladurbad.medusa.Medusa;
-import com.gladurbad.medusa.data.PlayerData;
+import lombok.Setter;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
-public final class VelocityProcessor {
-
+public class VelocityProcessor {
     private final PlayerData data;
-    private double velocityX, velocityY, velocityZ, lastVelocityX, lastVelocityY, lastVelocityZ;
-    private int maxVelocityTicks, velocityTicks, ticksSinceVelocity, bypassTicks;
-    private short transactionID, velocityID;
-    private long transactionPing, transactionReply;
-    private boolean verifyingVelocity;
 
-    public VelocityProcessor(final PlayerData data) {
-        this.data = data;
+    private double velocityX,velocityY,velocityZ;
+    private double explosionX,explosionY,explosionZ;
+    private short velocityID,explosionID;
+    @Setter
+    private boolean isVerifyVelocity;
+    private int ticksSinceVelocity;
+
+
+    public VelocityProcessor(PlayerData playerData) {
+        this.data = playerData;
     }
 
-    public void handle(final double velocityX, final double velocityY, final double velocityZ) {
+    public void handleInTransaction(short transactionID) {
+        if (transactionID == this.velocityID || transactionID == this.explosionID) {
+            this.isVerifyVelocity = false;
+        }
+    }
+
+    public void handleOutVelocity(WrappedPacketOutEntityVelocity wrapper) {
         this.ticksSinceVelocity = 0;
-
-        lastVelocityX = this.velocityX;
-        lastVelocityY = this.velocityY;
-        lastVelocityZ = this.velocityZ;
-
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-        this.velocityZ = velocityZ;
-
+        this.velocityX = wrapper.getVelocityX();
+        this.velocityY = wrapper.getVelocityY();
+        this.velocityZ = wrapper.getVelocityZ();
         this.velocityID = (short) ThreadLocalRandom.current().nextInt(32767);
-        this.verifyingVelocity = true;
+        PacketUtil.sendPacket(data.getPlayer(),new WrappedPacketOutTransaction(0,this.velocityID,false));
+        this.isVerifyVelocity = true;
     }
 
-    public void handleTransaction(final WrappedPacketInTransaction wrapper) {
-
-        if (this.verifyingVelocity && wrapper.getActionNumber() == this.velocityID) {
-            this.verifyingVelocity = false;
-            this.velocityTicks = Medusa.INSTANCE.getTickManager().getTicks();
-            this.maxVelocityTicks = (int) (((lastVelocityZ + lastVelocityX) / 2 + 2) * 15);
-        }
-
-        if (wrapper.getActionNumber() == transactionID) {
-            transactionPing = System.currentTimeMillis() - transactionReply;
-
-            transactionID = (short) ThreadLocalRandom.current().nextInt(32767);
-            PacketEvents.get().getPlayerUtils().sendPacket(data.getPlayer(), new WrappedPacketOutTransaction(0, transactionID, false));
-            transactionReply = System.currentTimeMillis();
-        }
+    public void handleOutExplosion(WrappedPacketOutExplosion wrapper) {
+        this.ticksSinceVelocity = 0;
+        this.explosionX = wrapper.getPlayerMotionX();
+        this.explosionY = wrapper.getPlayerMotionY();
+        this.explosionZ = wrapper.getPlayerMotionZ();
+        this.explosionID = (short) ThreadLocalRandom.current().nextInt(32767);
+        PacketUtil.sendPacket(data.getPlayer(),new WrappedPacketOutTransaction(0,this.explosionID,false));
+        this.isVerifyVelocity = true;
     }
 
     public void handleFlying() {
         ++ticksSinceVelocity;
     }
 
-    public boolean isTakingVelocity() {
-        return Math.abs(Medusa.INSTANCE.getTickManager().getTicks() - this.velocityTicks) < this.maxVelocityTicks;
-    }
-
-    public void setBypassTicks(int bypassTicks) {
-        this.bypassTicks = bypassTicks;
+    public boolean isVerifyVelocity() {
+        return isVerifyVelocity;
     }
 }

@@ -16,7 +16,7 @@ public final class CommandManager implements CommandExecutor {
 
     private final List<MedusaCommand> commands = new ArrayList<>();
 
-    public CommandManager(final MedusaPlugin plugin) {
+    public CommandManager() {
         commands.add(new Alerts());
         commands.add(new Info());
         commands.add(new Debug());

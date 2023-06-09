@@ -1,7 +1,6 @@
 package com.gladurbad.medusa.packet.processor;
 
 import com.gladurbad.medusa.data.PlayerData;
-import com.gladurbad.medusa.exempt.type.ExemptType;
 import io.github.retrooper.packetevents.event.impl.PacketPlayReceiveEvent;
 import io.github.retrooper.packetevents.packetwrappers.play.in.blockdig.WrappedPacketInBlockDig;
 import io.github.retrooper.packetevents.packetwrappers.play.in.blockplace.WrappedPacketInBlockPlace;
@@ -9,14 +8,11 @@ import io.github.retrooper.packetevents.packetwrappers.play.in.clientcommand.Wra
 import io.github.retrooper.packetevents.packetwrappers.play.in.entityaction.WrappedPacketInEntityAction;
 import io.github.retrooper.packetevents.packetwrappers.play.in.flying.WrappedPacketInFlying;
 import io.github.retrooper.packetevents.packetwrappers.play.in.helditemslot.WrappedPacketInHeldItemSlot;
-import io.github.retrooper.packetevents.packetwrappers.play.in.teleportaccept.WrappedPacketInTeleportAccept;
 import io.github.retrooper.packetevents.packetwrappers.play.in.transaction.WrappedPacketInTransaction;
 import io.github.retrooper.packetevents.packetwrappers.play.in.useentity.WrappedPacketInUseEntity;
 import com.gladurbad.medusa.packet.Packet;
 import io.github.retrooper.packetevents.packetwrappers.play.in.windowclick.WrappedPacketInWindowClick;
 import io.github.retrooper.packetevents.utils.player.Direction;
-import lombok.Getter;
-import org.bukkit.Bukkit;
 
 public final class ReceivingPacketProcessor  {
     public void handle(final PlayerData data, final Packet packet, final PacketPlayReceiveEvent event) {
@@ -47,7 +43,8 @@ public final class ReceivingPacketProcessor  {
             data.getActionProcessor().handleCloseWindow();
         } else if (packet.isUseEntity()) {
             final WrappedPacketInUseEntity wrapper = new WrappedPacketInUseEntity(packet.getRawPacket());
-            data.getCombatProcessor().handleUseEntity(wrapper);
+            if (wrapper.getEntity() != null) //防止空指针
+                data.getCombatProcessor().handleUseEntity(wrapper);
         } else if (packet.isFlying()) {
             final WrappedPacketInFlying wrapper = new WrappedPacketInFlying(packet.getRawPacket());
 
@@ -67,7 +64,7 @@ public final class ReceivingPacketProcessor  {
             data.getCombatProcessor().handleArmAnimation();
         } else if (packet.isIncomingTransaction()) {
             final WrappedPacketInTransaction wrapper = new WrappedPacketInTransaction(packet.getRawPacket());
-            data.getVelocityProcessor().handleTransaction(wrapper);
+            data.getVelocityProcessor().handleInTransaction(wrapper.getActionNumber());
             data.getTransactionProcessor().handleTransactionReceiving(wrapper);
         } else if (packet.isWindowClick()) {
             final WrappedPacketInWindowClick wrapper = new WrappedPacketInWindowClick(packet.getRawPacket());

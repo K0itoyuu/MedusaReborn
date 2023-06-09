@@ -28,7 +28,7 @@ public class InventoryD extends Check {
                 }
             }
             if (packet.isPosition()) {
-                boolean invalid = !isExempt(ExemptType.FLYING) && data.getVelocityProcessor().getBypassTicks() == 0 &&
+                boolean invalid = !isExempt(ExemptType.FLYING) && !data.getVelocityProcessor().isVerifyVelocity() &&
                         data.getPositionProcessor().getDeltaXZ() > 0.185 && !data.getPositionProcessor().isTeleporting();
                 if (invalid) buffer += 1.0;
                 if (buffer > 10.0) {

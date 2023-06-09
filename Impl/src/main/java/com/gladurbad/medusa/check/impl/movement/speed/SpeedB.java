@@ -15,6 +15,9 @@ public class SpeedB extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isPosition()) {
+
+            if (!data.getVelocityProcessor().isVerifyVelocity() && !data.getPlayer().isOnGround()) return;
+
             final double deltaX = data.getPositionProcessor().getDeltaX();
             final double lastDeltaX = data.getPositionProcessor().getLastDeltaX();
 

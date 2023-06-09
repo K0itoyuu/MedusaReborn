@@ -155,6 +155,16 @@ checks:
         enabled: true
         max-violations: 5
         punish-command: ''
+      # Checks if the player vertical velocity
+      c:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
+      # Checks if the player vertical velocity
+      d:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
     # Reach Detections: 这玩意的数学我教不会
     reach:
       # Checks if the player using reach.
@@ -218,6 +228,11 @@ checks:
         punish-command: ''
       # Checks for AutoBlock (Interact)
       c:
+        enabled: true
+        max-violations: 5
+        punish-command: ''
+      # Checks for AutoBlock (Interact)
+      d:
         enabled: true
         max-violations: 5
         punish-command: ''
@@ -310,6 +325,11 @@ checks:
         punish-command: ''
       # Checks if the player is blocking and sprinting simultaneously.
       b:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Checks if the player is blocking noslow
+      c:
         enabled: true
         max-violations: 10
         punish-command: ''
@@ -406,6 +426,11 @@ checks:
         punish-command: ''
       # FreeCam
       d:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
+      # Test
+      e:
         enabled: true
         max-violations: 10
         punish-command: ''

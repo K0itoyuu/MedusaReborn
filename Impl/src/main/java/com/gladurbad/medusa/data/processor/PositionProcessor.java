@@ -115,7 +115,6 @@ public final class PositionProcessor {
     }
 
     public void handleTicks() {
-        data.getVelocityProcessor().setBypassTicks(Math.max(0,data.getVelocityProcessor().getBypassTicks()-1));
         if (data.getPlayer().isBlocking()) {
             fastBlockTicks += 1;
         } else {

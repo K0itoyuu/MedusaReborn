@@ -5,12 +5,10 @@ import com.gladurbad.medusa.data.processor.PositionProcessor;
 import io.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.utils.player.ClientVersion;
 import lombok.experimental.UtilityClass;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -20,7 +18,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +30,24 @@ public final class PlayerUtil {
 
     public List<Block> getNearBlocks(PlayerData data) {
         return data.getPositionProcessor().getBoundingBox().expand(1, 1, 1).getBlocks(data.getPlayer().getWorld());
+    }
+
+    public List<Block> getNearBlocks(Player player,int expand) {
+        List<Block> blocks = new ArrayList<>();
+        int minX = player.getLocation().getBlockX() - expand;
+        int maxX = player.getLocation().getBlockX() + expand;
+
+        int minZ = player.getLocation().getBlockZ() - expand;
+        int maxZ = player.getLocation().getBlockZ() - expand;
+
+        for (int x=minX;x<=maxX;x=maxX-minX) {
+            for (int z=minZ;z<=maxZ;z=maxZ-minZ) {
+                Block block = new Location(player.getWorld(),x,player.getLocation().getBlockY(),z).getBlock();
+                if (!block.isEmpty()) blocks.add(block);
+            }
+        }
+
+        return blocks;
     }
 
     public double maxMotionY(Player player) {

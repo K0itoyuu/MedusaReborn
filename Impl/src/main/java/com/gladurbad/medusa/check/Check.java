@@ -64,7 +64,7 @@ public abstract class Check implements MedusaCheck {
     public abstract void handle(final Packet packet);
 
     public void setBack() {
-        data.getPlayer().teleport(data.getPlayer());
+        //data.getPlayer().teleport(data.getPlayer());
     }
 
     public void fail(final Object info) {

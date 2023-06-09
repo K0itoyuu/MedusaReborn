@@ -18,7 +18,7 @@ public enum ExemptType {
 
     TELEPORT(data -> data.getPositionProcessor().isTeleporting() || System.currentTimeMillis() - data.getJoinTime() < 2000L),
 
-    VELOCITY(data -> data.getVelocityProcessor().isTakingVelocity()),
+    VELOCITY(data -> data.getVelocityProcessor().getTicksSinceVelocity() <= 1),
 
     JOINED(data -> data.getJoinTime() < 5000L),
 

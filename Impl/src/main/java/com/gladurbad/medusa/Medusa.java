@@ -6,7 +6,6 @@ import com.gladurbad.medusa.listener.NetworkListener;
 import com.gladurbad.medusa.listener.JoinQuitListener;
 import com.gladurbad.medusa.manager.*;
 import io.github.retrooper.packetevents.PacketEvents;
-import io.github.retrooper.packetevents.utils.server.ServerVersion;
 import lombok.Getter;
 import com.gladurbad.medusa.command.CommandManager;
 import com.gladurbad.medusa.config.Config;
@@ -32,7 +31,7 @@ public enum Medusa {
     private final ReceivingPacketProcessor receivingPacketProcessor = new ReceivingPacketProcessor();
     private final SendingPacketProcessor sendingPacketProcessor = new SendingPacketProcessor();
     private final PlayerDataManager playerDataManager = new PlayerDataManager();
-    private final CommandManager commandManager = new CommandManager(this.getPlugin());
+    private final CommandManager commandManager = new CommandManager();
     private final ExecutorService packetExecutor = Executors.newSingleThreadExecutor();
 
     public void start(final MedusaPlugin plugin) {

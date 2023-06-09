@@ -18,7 +18,7 @@ public class NoSlowA extends Check {
     @Override
     public void handle(Packet packet) {
         Player player = data.getPlayer();
-        if ((data.getPositionProcessor().getGroundTicks() > 5 || data.getPositionProcessor().getAirTicks() > 5) && player.isBlocking() && !data.getPositionProcessor().isTeleporting() && data.getPositionProcessor().getFastBlockTicks() >= 3 && data.getVelocityProcessor().getBypassTicks() <= 8) {
+        if ((data.getPositionProcessor().getGroundTicks() > 5 || data.getPositionProcessor().getAirTicks() > 5) && player.isBlocking() && !data.getPositionProcessor().isTeleporting() && data.getPositionProcessor().getFastBlockTicks() >= 3 && !data.getVelocityProcessor().isVerifyVelocity()) {
             double diff = MathUtil.getDiff(data.getPositionProcessor());
             double maxSpeed = (0.282D + ((0.282D * 0.22D) * PlayerUtil.getPotionLevel(player, PotionEffectType.SPEED))) / 1.8D;
 

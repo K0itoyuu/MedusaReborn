@@ -41,7 +41,6 @@ public final class CheckManager {
 
             MotionA.class,
             MotionB.class,
-            MotionC.class,
 
             ImpossibleA.class,
             ImpossibleB.class,
@@ -52,15 +51,16 @@ public final class CheckManager {
             ScaffoldD.class,
 
             VelocityA.class,
-            VelocityB.class,
 
             NoSlowA.class,
             NoSlowB.class,
+            NoSlowC.class,
 
             ClientA.class,
             ClientB.class,
             ClientC.class,
             ClientD.class,
+            ClientE.class,
 
             FlyA.class,
             FlyB.class,
@@ -109,6 +109,7 @@ public final class CheckManager {
             ProtocolJ.class,
             ProtocolK.class,
             ProtocolL.class,
+
             RotationA.class,
             RotationB.class,
             RotationC.class,

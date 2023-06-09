@@ -40,12 +40,6 @@ public final class CombatProcessor {
         //distance = data.getPlayer().getLocation().toVector().setY(0).distance(target.getLocation().toVector().setY(0)) - .42;
         ++hits;
 
-        if (target instanceof Player) {
-            Player player = (Player) wrapper.getEntity();
-            PlayerData playerData = Medusa.INSTANCE.getPlayerDataManager().getPlayerData(player);
-            playerData.getVelocityProcessor().setBypassTicks(18);
-        }
-
         hitTicks = 0;
 
         if (target != lastTarget) {

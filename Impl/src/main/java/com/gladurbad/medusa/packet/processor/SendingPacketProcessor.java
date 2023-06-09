@@ -18,14 +18,12 @@ public final class SendingPacketProcessor  {
         if (packet.isVelocity()) {
             final WrappedPacketOutEntityVelocity wrapper = new WrappedPacketOutEntityVelocity(packet.getRawPacket());
             if (wrapper.getEntity() == data.getPlayer()) {
-                data.getVelocityProcessor().setBypassTicks(22);
-                data.getVelocityProcessor().handle(wrapper.getVelocityX(), wrapper.getVelocityY(), wrapper.getVelocityZ());
+                data.getVelocityProcessor().handleOutVelocity(wrapper);
             }
         }
         if (packet.isExplosion()) {
-            data.getVelocityProcessor().setBypassTicks(22);
             final WrappedPacketOutExplosion wrapper = new WrappedPacketOutExplosion(packet.getRawPacket());
-            data.getVelocityProcessor().handle(wrapper.getPlayerMotionX(), wrapper.getPlayerMotionY(), wrapper.getPlayerMotionZ());
+            data.getVelocityProcessor().handleOutExplosion(wrapper);
         }
         if (packet.isOutPosition()) {
             final WrappedPacketOutPosition wrapper = new WrappedPacketOutPosition(packet.getRawPacket());
@@ -34,7 +32,7 @@ public final class SendingPacketProcessor  {
         if (!data.getPlayer().hasPermission("medusa.bypass") || data.getPlayer().isOp()) {
             data.getChecks().forEach(check -> check.handle(packet));
         }
-        if (msTimer.hasTimePassed(90L)) {
+        if (msTimer.hasTimePassed(50L)) {
             final WrappedPacketOutTransaction wrapped = new WrappedPacketOutTransaction(0, (short) new Random().nextInt(32767),false);
             data.getTransactionProcessor().handleTransactionSend(wrapped);
             msTimer.reset();
