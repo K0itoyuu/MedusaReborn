@@ -19,7 +19,7 @@ public final class RotationProcessor {
         joltYaw, joltPitch, lastJoltYaw, lastJoltPitch, gcd,
         blockPlaceYaw,blockPlacePitch,lastBlockPlaceYaw,lastBlockPlacePitch;
 
-    private int sensitivity, lastCinematic, cinematicTicks;
+    private int sensitivity,lastSensitivity, lastCinematic, cinematicTicks;
 
     private final ArrayDeque<Integer> sensitivitySamples = new ArrayDeque<>();
 
@@ -96,6 +96,7 @@ public final class RotationProcessor {
         sensitivitySamples.add((int)finalSensitivity);
 
         if (sensitivitySamples.size() >= 40) {
+            this.lastSensitivity = this.sensitivity;
             this.sensitivity = MathUtil.getMode(sensitivitySamples);
 
             final float gcdOne = (sensitivity / 200F) * 0.6F + 0.2F;

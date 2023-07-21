@@ -41,8 +41,7 @@ public final class PositionProcessor {
     private int airTicks, sinceVehicleTicks, sinceFlyingTicks,
             groundTicks, sinceSlimeTicks, solidGroundTicks,
             iceTicks, sinceIceTicks, blockNearHeadTicks, sinceBlockNearHeadTicks,
-            sinceNearPistonTicks, tpBandaidFixTicks,
-            blockTicks,fastBlockTicks,lastFastBlockTicks,lastLastFastBlockTicks;
+            sinceNearPistonTicks, tpBandaidFixTicks;
 
     private final ArrayDeque<Vector> teleports = new ArrayDeque<>();
 
@@ -115,19 +114,11 @@ public final class PositionProcessor {
     }
 
     public void handleTicks() {
-        if (data.getPlayer().isBlocking()) {
-            fastBlockTicks += 1;
-        } else {
-            lastLastFastBlockTicks = lastFastBlockTicks;
-            lastFastBlockTicks = fastBlockTicks;
-            fastBlockTicks = 0;
-        }
         if (y < lastY)
             fallDistance = inAir ? fallDistance + Math.abs(deltaY) : 0;
         if (!inAir) {
             fallDistance = 0;
         }
-        blockTicks = data.getPlayer().isBlocking() ? blockTicks + 1 : Math.max((int) Math.floor((double) blockTicks / 2D), 0);
         groundTicks = onGround && mathematicallyOnGround ? groundTicks + 1 : 0;
         blockNearHeadTicks = blockNearHead ? blockNearHeadTicks + 1 : 0;
         sinceNearPistonTicks = nearPiston ? 0 : sinceNearPistonTicks + 1;

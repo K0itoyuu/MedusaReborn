@@ -8,13 +8,13 @@ import com.gladurbad.medusa.check.impl.combat.critical.*;
 import com.gladurbad.medusa.check.impl.combat.killaura.*;
 import com.gladurbad.medusa.check.impl.combat.velocity.*;
 import com.gladurbad.medusa.check.impl.movement.fly.*;
-import com.gladurbad.medusa.check.impl.movement.groundspoof.GroundSpoofA;
-import com.gladurbad.medusa.check.impl.movement.groundspoof.GroundSpoofB;
+import com.gladurbad.medusa.check.impl.movement.groundspoof.*;
 import com.gladurbad.medusa.check.impl.movement.jesus.*;
 import com.gladurbad.medusa.check.impl.movement.motion.*;
 import com.gladurbad.medusa.check.impl.movement.noslow.*;
 import com.gladurbad.medusa.check.impl.movement.sprint.*;
 import com.gladurbad.medusa.check.impl.movement.speed.*;
+import com.gladurbad.medusa.check.impl.movement.strafe.StrafeA;
 import com.gladurbad.medusa.check.impl.player.client.*;
 import com.gladurbad.medusa.check.impl.player.impossible.*;
 import com.gladurbad.medusa.check.impl.player.inventory.*;
@@ -52,7 +52,6 @@ public final class CheckManager {
 
             VelocityA.class,
 
-            NoSlowA.class,
             NoSlowB.class,
             NoSlowC.class,
 
@@ -66,10 +65,11 @@ public final class CheckManager {
             FlyB.class,
             FlyC.class,
 
+            StrafeA.class,
+
             SpeedA.class,
             SpeedB.class,
             SpeedC.class,
-            SpeedD.class,
 
             SprintA.class,
             SprintB.class,
@@ -82,6 +82,7 @@ public final class CheckManager {
             AutoBlockA.class,
             AutoBlockB.class,
             AutoBlockC.class,
+            AutoBlockD.class,
 
             KillAuraA.class,
             KillAuraB.class,
@@ -91,6 +92,7 @@ public final class CheckManager {
             KillAuraF.class,
             KillAuraG.class,
             KillAuraH.class,
+            KillAuraI.class,
 
             InventoryA.class,
             InventoryB.class,
@@ -118,6 +120,7 @@ public final class CheckManager {
     private static final List<Constructor<?>> CONSTRUCTORS = new ArrayList<>();
 
     public static List<Check> loadChecks(final PlayerData data) {
+        if (data.getChecks() != null) data.getChecks().clear();
         final List<Check> checkList = new ArrayList<>();
         for (Constructor<?> constructor : CONSTRUCTORS) {
             try {

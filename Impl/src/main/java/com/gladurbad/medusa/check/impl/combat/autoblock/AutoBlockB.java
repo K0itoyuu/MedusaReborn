@@ -15,8 +15,8 @@ public class AutoBlockB extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isUseEntity() && data.getCombatProcessor().getHitTicks() == 0) {
-            if (data.getActionProcessor().isBlocking() && data.getPositionProcessor().getFastBlockTicks() > 15) {
-                fail("BlockTicks: " + data.getPositionProcessor().getFastBlockTicks());
+            if (data.getActionProcessor().isBlocking() && data.getBukkitProcessor().getBukkitBlockingTick() > 15) {
+                fail("BlockTicks: " + data.getBukkitProcessor().getBukkitBlockingTick());
             }
         }
     }

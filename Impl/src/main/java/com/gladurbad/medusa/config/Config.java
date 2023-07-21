@@ -69,6 +69,44 @@ public final class Config {
                     checkType = "player";
                 }
 
+                String finalCheckType = checkType;
+                Arrays.stream(check.getDeclaredFields()).filter(field -> {
+                    try {
+                        field.setAccessible(true);
+                        return field.get(check) instanceof ConfigValue;
+                    } catch (Exception e) {
+                        return false;
+                    }
+                }).forEach(
+                        field -> {
+                            try {
+                                ConfigValue value = (ConfigValue) field.get(check);
+                                String name = value.getName();
+                                ConfigValue.ValueType type = value.getType();
+
+                                switch (type) {
+                                    case BOOLEAN:
+                                        value.setValue(getBooleanFromConfig("checks." + finalCheckType + "." + getPathFromCheckName(checkInfo.name()) + "." + name));
+                                        break;
+                                    case INTEGER:
+                                        value.setValue(getIntegerFromConfig("checks." + finalCheckType + "." + getPathFromCheckName(checkInfo.name()) + "." + name));
+                                        break;
+                                    case DOUBLE:
+                                        value.setValue(getDoubleFromConfig("checks." + finalCheckType + "." + getPathFromCheckName(checkInfo.name()) + "." + name));
+                                        break;
+                                    case STRING:
+                                        value.setValue(getStringFromConfig("checks." + finalCheckType + "." + getPathFromCheckName(checkInfo.name()) + "." + name));
+                                        break;
+                                    case LONG:
+                                        value.setValue(getLongFromConfig("checks." + finalCheckType + "." + getPathFromCheckName(checkInfo.name()) + "." + name));
+                                        break;
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                );
+
                 /*
                 ArrayList<Object> list = new ArrayList<>();
                 for (Field field : check.getDeclaredFields()) {

@@ -56,9 +56,9 @@ public final class CombatProcessor {
         currentTargets = 0;
 
         if (swings > 1) {
-            hitMissRatio = ((double) hits / (double) swings) * 100;
+            hitMissRatio = ((double) hits / (double) swings);
         }
-        if (hits > 100 || swings > 100) {
+        if (hits > 50 || swings > 50) {
             hits = swings = 0;
         }
     }

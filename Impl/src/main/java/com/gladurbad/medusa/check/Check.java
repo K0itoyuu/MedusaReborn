@@ -63,11 +63,8 @@ public abstract class Check implements MedusaCheck {
 
     public abstract void handle(final Packet packet);
 
-    public void setBack() {
-        //data.getPlayer().teleport(data.getPlayer());
-    }
-
     public void fail(final Object info) {
+        if (data.isPunished()) return;
         final MedusaFlagEvent event = new MedusaFlagEvent(data.getPlayer(), this);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled()) return;
@@ -186,9 +183,5 @@ public abstract class Check implements MedusaCheck {
             }
             return null;
         }
-    }
-
-    public boolean isBridging() {
-        return data.getPlayer().getLocation().clone().subtract(0, 2, 0).getBlock().getType() == Material.AIR;
     }
 }

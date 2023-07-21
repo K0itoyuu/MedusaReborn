@@ -6,10 +6,13 @@ import com.gladurbad.medusa.util.PlayerUtil;
 import com.gladurbad.medusa.util.type.EvictingList;
 import io.github.retrooper.packetevents.PacketEvents;
 import io.github.retrooper.packetevents.packetwrappers.play.in.blockdig.WrappedPacketInBlockDig;
+import io.github.retrooper.packetevents.packetwrappers.play.in.blockplace.WrappedPacketInBlockPlace;
 import io.github.retrooper.packetevents.packetwrappers.play.in.clientcommand.WrappedPacketInClientCommand;
 import io.github.retrooper.packetevents.packetwrappers.play.in.entityaction.WrappedPacketInEntityAction;
 import io.github.retrooper.packetevents.packetwrappers.play.in.helditemslot.WrappedPacketInHeldItemSlot;
 import io.github.retrooper.packetevents.packetwrappers.play.out.gamestatechange.WrappedPacketOutGameStateChange;
+import io.github.retrooper.packetevents.utils.player.Direction;
+import io.github.retrooper.packetevents.utils.vector.Vector3i;
 import lombok.Getter;
 import com.gladurbad.medusa.data.PlayerData;
 import lombok.Setter;
@@ -27,12 +30,15 @@ public final class ActionProcessor {
     private boolean sprinting, sneaking, sendingAction, placing, digging, blocking,
             respawning, sendingDig, lagging;
 
-    @Setter private boolean inventory,usingMedusaGui;
+    @Setter
+    private boolean inventory;
 
     private int heldItemSlot, lastHeldItemSlot, lastDiggingTick, lastPlaceTick, lastBreakTick,
             sprintingTicks, sneakingTicks, windowSlot;
 
     private long lastFlyingTime, ping;
+
+    private int blockingTick;
 
     public ActionProcessor(final PlayerData data) {
         this.data = data;
@@ -69,7 +75,7 @@ public final class ActionProcessor {
                 digging = false;
                 break;
             case RELEASE_USE_ITEM:
-                blocking = true;
+                //blocking = false;
                 break;
         }
     }
@@ -84,7 +90,6 @@ public final class ActionProcessor {
                 inventory = false;
                 windowSlot = -1;
                 data.getVelocityProcessor().setVerifyVelocity(false);
-                usingMedusaGui = false;
                 break;
         }
     }
@@ -133,13 +138,24 @@ public final class ActionProcessor {
         lastBreakTick = Medusa.INSTANCE.getTickManager().getTicks();
     }
 
+    public void handleBlockPlace(WrappedPacketInBlockPlace wrapper) {
+        if (wrapper.getDirection().equals(Direction.OTHER)) {
+            Vector3i blockPos = wrapper.getBlockPosition();
+            if (blockPos.getX() == -1 && blockPos.getY() == -1 && blockPos.getZ() == -1) {
+                //blocking = true;
+            }
+        }
+    }
+
     public void handleFlying() {
-        blocking = false;
         sendingDig = false;
         sendingAction = false;
         placing = false;
         respawning = false;
 
+        blocking = data.getPlayer().isBlocking();
+
+        blockingTick = blocking ? blockingTick + 1 : 0;
         sprintingTicks = sprinting ? sprintingTicks + 1 : 0;
         sneakingTicks = sneaking ? sneakingTicks + 1 : 0;
 

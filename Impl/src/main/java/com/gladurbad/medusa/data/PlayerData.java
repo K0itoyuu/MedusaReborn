@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 public final class PlayerData {
 
-    private boolean dumpPacket;
+    private boolean isPunished;
     private final Player player;
     private String clientBrand;
     private int totalViolations, combatViolations, movementViolations, playerViolations;
@@ -34,6 +34,7 @@ public final class PlayerData {
     private final RotationProcessor rotationProcessor = new RotationProcessor(this);
     private final VelocityProcessor velocityProcessor = new VelocityProcessor(this);
     private final TransactionProcessor transactionProcessor = new TransactionProcessor(this);
+    private final BukkitProcessor bukkitProcessor = new BukkitProcessor(this);
 
     public PlayerData(final Player player) {
         this.player = player;

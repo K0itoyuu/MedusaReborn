@@ -20,7 +20,10 @@ public final class PunishUtil {
                             .replaceAll("%checkName%", check.getJustTheName())
                             .replaceAll("%checkType", String.valueOf(check.getType()))
                             .replaceAll("%random_ac%",getRandomACName())));
+
+            data.setPunished(true);
         }
+
     }
 
     private String getRandomACName() {

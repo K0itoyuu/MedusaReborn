@@ -5,9 +5,11 @@ import com.gladurbad.medusa.check.Check;
 import com.gladurbad.medusa.data.PlayerData;
 import com.gladurbad.medusa.exempt.type.ExemptType;
 import com.gladurbad.medusa.packet.Packet;
+import com.gladurbad.medusa.util.PlayerUtil;
 
-@CheckInfo(name = "Speed (B)",description = "checks for strafe cheat")
+@CheckInfo(name = "Speed (B)",description = "Impossible Speed")
 public class SpeedB extends Check {
+
     public SpeedB(PlayerData data) {
         super(data);
     }
@@ -15,45 +17,21 @@ public class SpeedB extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isPosition()) {
-
-            if (!data.getVelocityProcessor().isVerifyVelocity() && !data.getPlayer().isOnGround()) return;
-
-            final double deltaX = data.getPositionProcessor().getDeltaX();
-            final double lastDeltaX = data.getPositionProcessor().getLastDeltaX();
-
-            final double deltaZ = data.getPositionProcessor().getDeltaZ();
-            final double lastDeltaZ = data.getPositionProcessor().getLastDeltaZ();
-
-            final double absDeltaX = Math.abs(deltaX);
-            final double absDeltaZ = Math.abs(deltaZ);
-
-            final double absLastDeltaX = Math.abs(lastDeltaX);
-            final double absLastDeltaZ = Math.abs(lastDeltaZ);
-
-            if (data.getPositionProcessor().getAirTicks() >= 2 && !isExempt(ExemptType.VELOCITY, ExemptType.NEAR_VEHICLE, ExemptType.TELEPORT, ExemptType.FLYING)) {
-                final boolean xSwitched = (deltaX > 0 && lastDeltaX < 0) || (deltaX < 0 && lastDeltaX > 0);
-                final boolean zSwitched = (deltaZ > 0 && lastDeltaZ < 0) || (deltaZ < 0 && lastDeltaZ > 0);
-
-                if (xSwitched) {
-                    if (Math.abs(absDeltaX - absLastDeltaX) > 0.05) {
-                        if (++buffer > 1.25) {
-                            setBack();
-                            fail("diff:" + Math.abs(absDeltaX - absLastDeltaX));
-                        }
-                    }
-                } else {
-                    buffer = Math.max(buffer - 0.05, 0);
+            if (data.getJoinTime() < 4500L) return;
+            double dxz = data.getPositionProcessor().getLastDeltaXZ();
+            boolean isExempt = isExempt(ExemptType.FLYING,ExemptType.VELOCITY,ExemptType.TELEPORT);
+            if (!isExempt) {
+                boolean invalid = dxz > PlayerUtil.maxSpeed(data.getPlayer());
+                if (dxz > 0)
+                    debug("s:" + dxz);
+                if (invalid) {
+                    buffer += 1;
                 }
-                if (zSwitched) {
-                    if (Math.abs(absDeltaZ - absLastDeltaZ) > 0.05) {
-                        if (++buffer > 1.25) {
-                            setBack();
-                            fail("diff:" + Math.abs(absDeltaX - absLastDeltaX));
-                        }
-                    }
-                } else {
-                    buffer = Math.max(buffer - 0.05, 0);
-                }
+            }
+
+            if (buffer >= 3) {
+                fail("s:" + dxz + ", ms:" + PlayerUtil.maxSpeed(data.getPlayer()));
+                buffer = 0;
             }
         }
     }

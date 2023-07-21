@@ -16,12 +16,12 @@ public class NoSlowB extends Check {
     @Override
     public void handle(Packet packet) {
         if (data.getPlayer().isBlocking() || data.getActionProcessor().isBlocking()) {
-            boolean invalid = data.getActionProcessor().getSprintingTicks() > 8 && data.getPositionProcessor().getFastBlockTicks() > 8;
+            boolean invalid = data.getActionProcessor().getSprintingTicks() > 8 && data.getBukkitProcessor().getBukkitBlockingTick() > 8;
             if (invalid) {
                 buffer += 1;
             }
             if (buffer >= 5) {
-                fail("SprintingTicks: " + data.getActionProcessor().getSprintingTicks() + ", BlockTicks: " + data.getPositionProcessor().getFastBlockTicks());
+                fail("SprintingTicks: " + data.getActionProcessor().getSprintingTicks() + ", BlockTicks: " + data.getBukkitProcessor().getBukkitBlockingTick());
                 buffer = 0;
             }
         }

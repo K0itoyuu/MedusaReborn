@@ -18,10 +18,12 @@ public class Reload extends MedusaCommand {
         Config.updateConfig();
         Medusa.INSTANCE.stop(Medusa.INSTANCE.getPlugin());
         Medusa.INSTANCE.start(Medusa.INSTANCE.getPlugin());
-        for (PlayerData data : Medusa.INSTANCE.getPlayerDataManager().getAllData()) {
-            data.getChecks().clear();
-            data.setChecks(CheckManager.loadChecks(data));
-        }
+        Medusa.INSTANCE.getPlayerDataManager().getAllData().forEach(
+                playerData -> {
+                    playerData.getChecks().clear();
+                    playerData.setChecks(CheckManager.loadChecks(playerData));
+                }
+        );
         sendMessage(sender, Config.ACCENT_ONE + "Reloaded Medusa" + Config.ACCENT_ONE + ".");
         return true;
     }

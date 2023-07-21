@@ -150,21 +150,6 @@ checks:
         enabled: true
         max-violations: 5
         punish-command: ''
-      # Checks if the player horizontal velocity
-      b:
-        enabled: true
-        max-violations: 5
-        punish-command: ''
-      # Checks if the player vertical velocity
-      c:
-        enabled: true
-        max-violations: 5
-        punish-command: ''
-      # Checks if the player vertical velocity
-      d:
-        enabled: true
-        max-violations: 5
-        punish-command: ''
     # Reach Detections: 这玩意的数学我教不会
     reach:
       # Checks if the player using reach.
@@ -215,6 +200,7 @@ checks:
         enabled: true
         max-violations: 15
         punish-command: ''
+        invalid-diff: 45
     autoblock:
       # Checks for AutoBlock (Simple)
       a:
@@ -279,24 +265,25 @@ checks:
         enabled: true
         max-violations: 10
         punish-command: ''
+    strafe:
+      # Checks for strafe
+      a:
+        enabled: true
+        max-violations: 10
+        punish-command: ''
     speed:
       # Checks for horizontal friction.
       a:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Checks for strafe
+      # Impossible Speed
       b:
         enabled: true
         max-violations: 10
         punish-command: ''
-      # Impossible Speed
-      c:
-        enabled: true
-        max-violations: 10
-        punish-command: ''
       # In Web Speed
-      d:
+      c:
         enabled: true
         max-violations: 10
         punish-command: ''

@@ -20,7 +20,7 @@ public class VelocityProcessor {
     private short velocityID,explosionID;
     @Setter
     private boolean isVerifyVelocity;
-    private int ticksSinceVelocity;
+    private int ticksSinceVelocity,verifyVelocityTick;
 
 
     public VelocityProcessor(PlayerData playerData) {
@@ -41,6 +41,7 @@ public class VelocityProcessor {
         this.velocityID = (short) ThreadLocalRandom.current().nextInt(32767);
         PacketUtil.sendPacket(data.getPlayer(),new WrappedPacketOutTransaction(0,this.velocityID,false));
         this.isVerifyVelocity = true;
+        this.verifyVelocityTick = 0;
     }
 
     public void handleOutExplosion(WrappedPacketOutExplosion wrapper) {
@@ -51,10 +52,14 @@ public class VelocityProcessor {
         this.explosionID = (short) ThreadLocalRandom.current().nextInt(32767);
         PacketUtil.sendPacket(data.getPlayer(),new WrappedPacketOutTransaction(0,this.explosionID,false));
         this.isVerifyVelocity = true;
+        this.verifyVelocityTick = 0;
     }
 
     public void handleFlying() {
         ++ticksSinceVelocity;
+        if (isVerifyVelocity) {
+            ++verifyVelocityTick;
+        }
     }
 
     public boolean isVerifyVelocity() {

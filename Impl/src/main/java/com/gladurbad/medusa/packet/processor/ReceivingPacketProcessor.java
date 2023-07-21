@@ -36,6 +36,7 @@ public final class ReceivingPacketProcessor  {
                 data.getRotationProcessor().setBlockPlacePitch(data.getRotationProcessor().getPitch());
                 data.getRotationProcessor().setBlockPlaceYaw(data.getRotationProcessor().getYaw());
             }
+            data.getActionProcessor().handleBlockPlace(blockPlace);
         } else if (packet.isHeldItemSlot()) {
             final WrappedPacketInHeldItemSlot wrapper = new WrappedPacketInHeldItemSlot(packet.getRawPacket());
             data.getActionProcessor().handleHeldItemSlot(wrapper);
@@ -51,6 +52,7 @@ public final class ReceivingPacketProcessor  {
             data.getActionProcessor().handleFlying();
             data.getVelocityProcessor().handleFlying();
             data.getCombatProcessor().handleFlying();
+            data.getBukkitProcessor().handleFlying();
 
             if (wrapper.isPosition()) {
                 data.getPositionProcessor().handle(wrapper.getX(), wrapper.getY(), wrapper.getZ(), wrapper.isOnGround());

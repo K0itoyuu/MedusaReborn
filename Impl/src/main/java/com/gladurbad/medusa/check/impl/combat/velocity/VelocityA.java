@@ -16,18 +16,19 @@ public class VelocityA extends Check {
     @Override
     public void handle(Packet packet) {
         if (packet.isFlying()) {
-            if (data.getVelocityProcessor().getVelocityY() > 0D && data.getVelocityProcessor().getTicksSinceVelocity() <= 1) {
+            if (data.getVelocityProcessor().getVelocityY() > 0D && data.getVelocityProcessor().getTicksSinceVelocity() >= data.getVelocityProcessor().getVerifyVelocityTick()-1 && data.getVelocityProcessor().getTicksSinceVelocity() <= data.getVelocityProcessor().getVerifyVelocityTick() + 1) {
                 double deltaY = data.getPositionProcessor().getDeltaY();
-                double targetY = hasBlockOnHead() ? 0.17D : data.getVelocityProcessor().getVelocityY() - 0.04D;
-                debug("deltaY: " + deltaY + ", targetY: " + targetY);
+                double targetY = hasBlockOnHead() ? 0.17D : data.getVelocityProcessor().getVelocityY() - 0.07D;
+                if (targetY > 0) deltaY = Math.abs(deltaY);
+                debug("deltaY: " + deltaY + ", targetY: " + targetY + ", tsv: " + data.getVelocityProcessor().getTicksSinceVelocity());
                 if (deltaY < targetY) {
-                    buffer += 1.25;
+                    buffer += 0.75;
                 } else {
                     buffer = Math.max(0, buffer - 0.35);
                 }
 
                 if (buffer >= 3.25) {
-                    fail("deltaY: " + deltaY + ", targetY: " + targetY);
+                    fail("deltaY: " + deltaY + ", targetY: " + targetY + ", process: " + (deltaY / targetY * 100) + "%" + ", tsv: " + data.getVelocityProcessor().getTicksSinceVelocity());
                     buffer = 0;
                 }
             }

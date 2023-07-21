@@ -23,7 +23,6 @@ public class FlyD extends Check {
         }
 
         if (buffer >= 3) {
-            setBack();
             buffer -= 1.5;
             fail("motionY:" + data.getPositionProcessor().getLastDeltaY());
         }
